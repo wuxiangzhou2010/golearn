@@ -30,7 +30,7 @@ func main() {
 
 	var generator EmployeeIdGenerator
 	generator = func(company string, department string, sn uint32) string {
-		return appendSn(c+department, sn)
+		return appendSn(c+ "-"+department+ "-", sn)
 	}
 	fmt.Println(generateId(generator, "RD"))
 }
