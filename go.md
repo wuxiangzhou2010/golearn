@@ -10,12 +10,9 @@
 cd src
 ./all.bash
 
-
 environment
     $GOOS $GOARCH
     $GOROOT_BOOTSTRAP
-
-
 
 ###  [Install go ](https://golang.org/doc/install)
 Download [link](https://golang.org/dl/)
@@ -70,19 +67,45 @@ go get  从远程代码仓库下载并安装
     -u update
 ```
 
-type interface {}
+## [Go by examples](https://gobyexample.com/)
 
-channel
-
-buffered channel
-
-channel-directions
-
-[select](https://gobyexample.com/select)
-[timeout](https://gobyexample.com/timeouts)
-[unblocking_channel](https://gobyexample.com/non-blocking-channel-operations)
-closing channel
-range over channel 
-timer
-ticker
+- type interface {}
+- channel
+- buffered channel
+- channel-directions
+- [select](https://gobyexample.com/select)
+- [timeout](https://gobyexample.com/timeouts)
+- [unblocking_channel](https://gobyexample.com/non-blocking-channel-operations)
+- closing channel
+- range over channel 
+- timer
+- ticker
+  
     time.NewTicker(500 * time.Millisecond)
+
+- sync/atomic
+  
+    atomic.AddUint64(&ops, 1)
+    atomic.LoadUint64(&ops)
+- mutex
+- stateful goroutines
+- sorting
+- panic
+
+- Defer 
+
+Defer is used to ensure that a function call is performed later in a program’s execution, usually for purposes of cleanup. defer is often used where e.g. ensure and finally would be used in other languages.
+
+- regular expression
+- Json
+- time/ time parsing
+- utl/url parsing
+- sha1 hash
+- base64 encoding
+- reading/writing files
+- line filters
+- command line arguments
+- environment variables
+- executing processes
+- signals os/signal syscall
+- exit
