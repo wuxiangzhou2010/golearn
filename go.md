@@ -69,3 +69,13 @@ go get  从远程代码仓库下载并安装
     -fix 下载后进行修正动作
     -u update
 ```
+
+type interface {}
+
+channel
+
+buffered channel
+
+channel-directions
+
+[select](https://gobyexample.com/select)
