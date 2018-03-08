@@ -79,3 +79,10 @@ buffered channel
 channel-directions
 
 [select](https://gobyexample.com/select)
+[timeout](https://gobyexample.com/timeouts)
+[unblocking_channel](https://gobyexample.com/non-blocking-channel-operations)
+closing channel
+range over channel 
+timer
+ticker
+    time.NewTicker(500 * time.Millisecond)
