@@ -76,6 +76,9 @@ fmt.Println("settability of p: ", p.CanSet())
 v := p.Elem()
 fmt.Println("settability of v: ", v.CanSet())
 ```
+interface{}到函数反射
+
 
 
 [type Kind](https://golang.org/pkg/reflect/)
+[laws-of-reflection](https://blog.golang.org/laws-of-reflection)
