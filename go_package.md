@@ -82,3 +82,8 @@ interface{}到函数反射
 
 [type Kind](https://golang.org/pkg/reflect/)
 [laws-of-reflection](https://blog.golang.org/laws-of-reflection)
+
+[2 4 Google Understanding Go Interfaces](https://www.youtube.com/watch?v=F4wUrj6pmSI)
+
+ the bigger the interface, the weaker the abstration
+ Return concrete types, receive interfaces as parameters
