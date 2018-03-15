@@ -84,9 +84,12 @@ interface{}到函数反射
 [laws-of-reflection](https://blog.golang.org/laws-of-reflection)
 [go interfaces](https://www.airs.com/blog/archives/277)
 [interfaces](https://research.swtch.com/interfaces)
+[2 4 Google Understanding Go Interfaces](https://www.youtube.com/watch?v=F4wUrj6pmSI)
+
+    the bigger the interface, the weaker the abstration
+    Return concrete types, receive interfaces as parameters
 
 
 strconv 
-   Atoi
-   Itoa
-   
+    Atoi
+    Itoa
