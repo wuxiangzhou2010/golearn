@@ -121,3 +121,17 @@ channel 只能用make 创建 c := make(chan int)
  read from closed channel `ok`
  write to close channel `panic` 
 
+
+value receiver and pointer receiver
+    值類型的receiver 需要copy一份，不會修改原來的值
+    指針類型的可以修改原來的值
+
+
+The select statement is like a switch, but the decision is based on ability to communicate rather than equal values.
+
+Some elements of Go step farther from C, even C++ and Java:
+concurrency
+garbage collection
+interface types
+reflection
+type switche

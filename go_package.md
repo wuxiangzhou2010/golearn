@@ -54,37 +54,34 @@ interface 组合
 
 interface 查询
 
-
-
 [reflect](http://www.cnblogs.com/coder2012/p/4881854.html)
 
-- 从接口值到反射
-```
-var x int = 1
-fmt.Println("type: ", reflect.TypeOf(x))
-```
-- 从反射到接口值
-```
-func (v Value) Interface() interface {}
-// Interface 以 interface{} 返回 v 的值
-y := v.Interface().(float64)
-```
-- 修改反射对象
-```
-p := reflect.ValueOf(&x) // 获取x的地址
-fmt.Println("settability of p: ", p.CanSet())
-v := p.Elem()
-fmt.Println("settability of v: ", v.CanSet())
-```
-interface{}到函数反射
-
-
+    - 从接口值到反射
+    ```
+    var x int = 1
+    fmt.Println("type: ", reflect.TypeOf(x))
+    ```
+    - 从反射到接口值
+    ```
+    func (v Value) Interface() interface {}
+    // Interface 以 interface{} 返回 v 的值
+    y := v.Interface().(float64)
+    ```
+    - 修改反射对象
+    ```
+    p := reflect.ValueOf(&x) // 获取x的地址
+    fmt.Println("settability of p: ", p.CanSet())
+    v := p.Elem()
+    fmt.Println("settability of v: ", v.CanSet())
+    ```
+    interface{}到函数反射
 
 [type Kind](https://golang.org/pkg/reflect/)
 [laws-of-reflection](https://blog.golang.org/laws-of-reflection)
 [go interfaces](https://www.airs.com/blog/archives/277)
 [interfaces](https://research.swtch.com/interfaces)
 [2 4 Google Understanding Go Interfaces](https://www.youtube.com/watch?v=F4wUrj6pmSI)
+[context](https://yq.aliyun.com/articles/69662)
 
     the bigger the interface, the weaker the abstration
     Return concrete types, receive interfaces as parameters
