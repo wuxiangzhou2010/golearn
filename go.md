@@ -109,3 +109,15 @@ Defer is used to ensure that a function call is performed later in a program’s
 - executing processes
 - signals os/signal syscall
 - exit
+
+channel 只能用make 创建 c := make(chan int)
+ unbuffered channel c := make(chan init) c := make(chan int, 0)
+ buffered channel  c := make(chan int, 10)
+
+ goroutine 不同于线程， 一个线程可以包含数个goroutine, 如果线程被阻塞， 则使用其他线程， 如果没有线程， 则开辟新线程，
+ ， 开辟后不删除， 即动态增加的线程
+
+ close channel twice `panic`
+ read from closed channel `ok`
+ write to close channel `panic` 
+

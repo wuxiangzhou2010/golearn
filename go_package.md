@@ -84,3 +84,9 @@ interface{}到函数反射
 [laws-of-reflection](https://blog.golang.org/laws-of-reflection)
 [go interfaces](https://www.airs.com/blog/archives/277)
 [interfaces](https://research.swtch.com/interfaces)
+
+
+strconv 
+   Atoi
+   Itoa
+   
