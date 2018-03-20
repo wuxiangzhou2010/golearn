@@ -82,6 +82,9 @@
 - Bytes
 
     bytes.Equal()
+    bytes.Split()
+    bytes.SplitN()
+    bytes.Trim()
 
 - time
 
