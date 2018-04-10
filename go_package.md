@@ -45,7 +45,12 @@ interface 类型
 
    可以被任意对象实现， 一个对象也可以实现多个接口
    方法不能重载
-
+``` go
+type DNSclient interface {
+    Feature
+    LookupIP(host string)([]net.IP, err)
+}
+```
 interface 值
 interface 组合
     嵌套但是不能有重复的方法
@@ -90,3 +95,6 @@ interface 查询
 strconv 
     Atoi
     Itoa
+
+string
+slice []string
