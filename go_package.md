@@ -41,7 +41,7 @@ import的时候其实是执行了该包里面的init函数，初始化了里面�
 
 ### [interface{} 空接口可以代表任何类型， 有点类似于Java中的Object类](http://blog.csdn.net/chuangrain/article/details/9358737)
 
-interface 类型
+### interface 类型
 
    可以被任意对象实现， 一个对象也可以实现多个接口
    方法不能重载
@@ -57,44 +57,44 @@ interface 组合
     方法相同可以相互赋值
     大的 interface可以赋值给小的interface， 反之不行， 因为有的方法没有实现。 被赋值的接口同名方法被覆盖
 
-interface 查询
+### interface 查询
 
 [reflect](http://www.cnblogs.com/coder2012/p/4881854.html)
 
-    - 从接口值到反射
-    ```
-    var x int = 1
-    fmt.Println("type: ", reflect.TypeOf(x))
-    ```
-    - 从反射到接口值
-    ```
-    func (v Value) Interface() interface {}
-    // Interface 以 interface{} 返回 v 的值
-    y := v.Interface().(float64)
-    ```
-    - 修改反射对象
-    ```
-    p := reflect.ValueOf(&x) // 获取x的地址
-    fmt.Println("settability of p: ", p.CanSet())
-    v := p.Elem()
-    fmt.Println("settability of v: ", v.CanSet())
-    ```
-    interface{}到函数反射
+- 从接口值到反射
+```
+var x int = 1
+fmt.Println("type: ", reflect.TypeOf(x))
+```
+- 从反射到接口值
+```
+func (v Value) Interface() interface {}
+// Interface 以 interface{} 返回 v 的值
+y := v.Interface().(float64)
+```
+- 修改反射对象
+```
+p := reflect.ValueOf(&x) // 获取x的地址
+fmt.Println("settability of p: ", p.CanSet())
+v := p.Elem()
+fmt.Println("settability of v: ", v.CanSet())
+```
+interface{}到函数反射
 
-[type Kind](https://golang.org/pkg/reflect/)
-[laws-of-reflection](https://blog.golang.org/laws-of-reflection)
-[go interfaces](https://www.airs.com/blog/archives/277)
-[interfaces](https://research.swtch.com/interfaces)
-[2 4 Google Understanding Go Interfaces](https://www.youtube.com/watch?v=F4wUrj6pmSI)
-[context](https://yq.aliyun.com/articles/69662)
 
+some links
+- [type Kind](https://golang.org/pkg/reflect/)
+- [laws-of-reflection](https://blog.golang.org/laws-of-reflection)
+- [go interfaces](https://www.airs.com/blog/archives/277)
+- [interfaces](https://research.swtch.com/interfaces)
+- [2 4 Google Understanding Go Interfaces](https://www.youtube.com/watch?v=F4wUrj6pmSI)
+- [context](https://yq.aliyun.com/articles/69662)
+
+ 
     the bigger the interface, the weaker the abstration
     Return concrete types, receive interfaces as parameters
 
 
-strconv 
+### strconv 
     Atoi
     Itoa
-
-string
-slice []string

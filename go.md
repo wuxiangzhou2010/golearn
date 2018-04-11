@@ -67,6 +67,29 @@ go get  从远程代码仓库下载并安装
     -fix 下载后进行修正动作
     -u update
 ```
+### types
+
+- numbers
+- int 
+- float
+- booleans
+- string
+- slice []string
+- channel
+- struct 
+- interface
+``` go
+type Name struct {
+
+}
+type Name interface {
+
+}
+```
+
+任何类型的空值 nil
+
+### variables
 
 ## [Go by examples](https://gobyexample.com/)
 
@@ -100,7 +123,7 @@ Defer is used to ensure that a function call is performed later in a program’s
 - regular expression
 - Json
 - time/ time parsing
-- utl/url parsing
+- url/url parsing
 - sha1 hash
 - base64 encoding
 - reading/writing files
@@ -112,27 +135,30 @@ Defer is used to ensure that a function call is performed later in a program’s
 - exit
 
 channel 只能用make 创建 c := make(chan int)
- unbuffered channel c := make(chan init) c := make(chan int, 0)
- buffered channel  c := make(chan int, 10)
+unbuffered channel c := make(chan init) c := make(chan int, 0)
+buffered channel  c := make(chan int, 10)
 
- goroutine 不同于线程， 一个线程可以包含数个goroutine, 如果线程被阻塞， 则使用其他线程， 如果没有线程， 则开辟新线程，
- ， 开辟后不删除， 即动态增加的线程
+goroutine 不同于线程， 一个线程可以包含数个goroutine, 如果线程被阻塞， 则使用其他线程， 如果没有线程， 则开辟新线程，
+， 开辟后不删除， 即动态增加的线程
 
- close channel twice `panic`
- read from closed channel `ok`
- write to close channel `panic` 
+close channel twice `panic`
+read from closed channel `ok`
+write to close channel `panic` 
 
 
 value receiver and pointer receiver
+
     值類型的receiver 需要copy一份，不會修改原來的值
     指針類型的可以修改原來的值
 
 
 The select statement is like a switch, but the decision is based on ability to communicate rather than equal values.
 
-Some elements of Go step farther from C, even C++ and Java:
-concurrency
-garbage collection
-interface types
-reflection
-type switche
+Some elements of Go step further from C, even C++ and Java:
+
+    concurrency
+    garbage collection
+    interface types
+    reflection
+    type switch
+
