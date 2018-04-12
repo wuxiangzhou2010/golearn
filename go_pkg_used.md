@@ -1,4 +1,4 @@
-## go package met
+# go package met
 
 - path/filepath
 

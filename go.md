@@ -15,8 +15,10 @@ environment
     $GOROOT_BOOTSTRAP
 
 ###  [Install go ](https://golang.org/doc/install)
+
 Download [link](https://golang.org/dl/)
-```
+
+``` sh
 wget https://dl.google.com/go/go1.10.linux-amd64.tar.gz
 # creating a Go tree in /usr/local/go
 tar -C /usr/local -xzf go1.10.linux-amd64.tar.gz
@@ -29,28 +31,31 @@ export PATH=$PATH:$GOROOT/bin
 export PATH=$PATH:$GOPATH/bin
 
 ```
+
 ### Installing to a custom location
-```
+
+``` sh
 # need to set the following
 export GOROOT=$HOME/go1.X
 export PATH=$PATH:$GOROOT/bin
 ```
 
 Uninstalling Go
-```
+
+``` sh
 rm -rf /usr/local/go
 # Remove  PATH environment variable
 ```
 
-[ A tour of Go](https://tour.golang.org/list)
-
+[A tour of Go](https://tour.golang.org/list)
 
 [go command](https://www.imooc.com/video/7208)
-```
+
+``` sh
 go env GOPATH
 go env GOROOT
 
-go build 
+go build
     编译源码文件， 代码包， 代码包不产生任何可执行文件， 
 go run
   -a 强制编译相关代码
@@ -67,17 +72,19 @@ go get  从远程代码仓库下载并安装
     -fix 下载后进行修正动作
     -u update
 ```
+
 ### types
 
 - numbers
-- int 
+- int
 - float
 - booleans
 - string
 - slice []string
 - channel
-- struct 
+- struct
 - interface
+
 ``` go
 type Name struct {
 
@@ -104,11 +111,11 @@ type Name interface {
 - range over channel 
 - timer
 - ticker
-  
+
     time.NewTicker(500 * time.Millisecond)
 
 - sync/atomic
-  
+
     atomic.AddUint64(&ops, 1)
     atomic.LoadUint64(&ops)
 - mutex
@@ -116,7 +123,7 @@ type Name interface {
 - sorting
 - panic
 
-- Defer 
+- Defer
 
 Defer is used to ensure that a function call is performed later in a program’s execution, usually for purposes of cleanup. defer is often used where e.g. ensure and finally would be used in other languages.
 
@@ -143,14 +150,12 @@ goroutine 不同于线程， 一个线程可以包含数个goroutine, 如果线�
 
 close channel twice `panic`
 read from closed channel `ok`
-write to close channel `panic` 
-
+write to close channel `panic`
 
 value receiver and pointer receiver
 
     值類型的receiver 需要copy一份，不會修改原來的值
     指針類型的可以修改原來的值
-
 
 The select statement is like a switch, but the decision is based on ability to communicate rather than equal values.
 
@@ -161,4 +166,3 @@ Some elements of Go step further from C, even C++ and Java:
     interface types
     reflection
     type switch
-
