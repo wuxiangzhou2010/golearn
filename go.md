@@ -33,7 +33,6 @@ export PATH=$PATH:/usr/local/go/bin
 export GOPATH=~/go
 export GOROOT=/usr/local/go
 export PATH=$PATH:$GOROOT/bin
-export PATH=$PATH:$GOPATH/bin
 
 ```
 
