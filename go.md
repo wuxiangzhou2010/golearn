@@ -56,7 +56,7 @@ rm -rf /usr/local/go
 
 [go command](https://www.imooc.com/video/7208)
 
-``` go
+``` sh
 go env GOPATH
 go env GOROOT
 

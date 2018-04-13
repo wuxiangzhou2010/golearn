@@ -31,7 +31,7 @@ init 同一个go 文件的init 从上到下依次执行
 
 _  仅仅执行包中的init()函数
 
-别名    import(f "fmt")
+别名 import(f "fmt")
 
 import的时候其实是执行了该包里面的init函数，初始化了里面的变量，_操作只是说该包引入了，只初始化里面的init函数和一些变量，不能通过包名来调用其它的函数，这有什么用呢？往往这些init函数里面是注册自己包里面的引擎，让外部可以方便的使用，就很多实现database/sql的引起，在init函数里面都是调用了sql.Register(name string, driver driver.Driver)注册自己，然后外部就可以使用了。
 
