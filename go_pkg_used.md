@@ -1,4 +1,4 @@
-## go package met
+# go package met
 
 - path/filepath
 
@@ -34,7 +34,7 @@
     net.FileConnc //FileConn returns a copy of the network connection corresponding to the open file f
     net.ParseIP(s string) //ParseIP parses s as an IP address,
     net.SplitHostPort
-    net.Addr 
+    net.Addr
     net.Conn
     net.CIDRMask
     net.TCPAddr
