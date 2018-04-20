@@ -80,17 +80,18 @@ go get  从远程代码仓库下载并安装
 ### types
 
 - numbers
-    - int
-    - float
+  - int
+  - float
 - booleans
 - string
 - array
 - struct
 - interface
 
-array has its fixed length while slice is not 
+array has its fixed length while slice is not
 
 - map
+
 m = make(make[string]int)
 m["k1"] = 7
 m["k2"] = 8
@@ -107,7 +108,6 @@ range on arrays and slices provides both the index and value for each entry.
 first index and then entry.
 range on map provide the key and value, if only one is provided(key), it works too.
 range over string, indexn and char
-
 
 ``` go
 type Name struct {

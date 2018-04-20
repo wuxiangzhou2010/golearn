@@ -47,6 +47,10 @@
     net.IPMask
     net.IPNet
 
+    DNS resolve can use buildin go or system, buildin is using a goroutine while c is using a block call(thread).
+
+    it seems internal go routine is  more efficient.
+
 - sync
 
     sync.Mutex
