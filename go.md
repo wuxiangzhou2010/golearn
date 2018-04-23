@@ -192,3 +192,11 @@ Some elements of Go step further from C, even C++ and Java:
     type switch
 
 [go build tags](https://golang.org/pkg/go/build/)
+
+[go benchmark](https://dave.cheney.net/2013/06/30/how-to-write-benchmarks-in-go)
+
+``` sh
+go test -bench=.
+```
+
+[resources-for-new-go-programmers](https://dave.cheney.net/resources-for-new-go-programmers)
