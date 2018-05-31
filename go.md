@@ -79,18 +79,28 @@ go get  从远程代码仓库下载并安装
 
 ### types
 
+#### Basic data types
+
 - numbers
   - int
-  - float
-- booleans
-- string
-- array
-- struct
-- interface
+  - float:
+    Go provides two sizes of floating-point numbers, float32 and float64
+    math.MaxFloat32/math.MaxFloat64
+
+- booleans: trure or false
+- strings: immutable sequence of bytes, can use index s[1], len, s[i:j]
+    four standard packages are particularly important for manipulating strings: bytes, strings, strconv and unicode.
+
+- constants constant generator iota(from 0)
+
+#### composite types
+
+- arrays: fixed length, a[0], len(a), range a,
+- slice []string, append, s[1],range s, len(s),
 
 array has its fixed length while slice is not
 
-- map
+- map: use make, range, m['a']
 
 m = make(make[string]int)
 m["k1"] = 7
@@ -100,7 +110,14 @@ delete["k1"]
 _, pres = m["k2"]
     pres indicate whether the value presents with the given key
 
-- slice []string
+- struct
+- struct literals
+- JSON: basic types are numbers, bolleans, string
+    json array and objects
+
+    Converting a Go dat a structure like movies to JSON is called marshaling. `json.Marshal(movies)`, produce a byte slice. `json.Unmarshl`
+
+- interface
 - channel
 
 slice channel map 需要用make 生成
@@ -121,6 +138,55 @@ type Name interface {
 任何类型的空值 nil
 
 ### variables
+
+## function
+
+- Variadic Functions
+
+```go
+func sum(vals ...int)int {
+    total ：= 0
+    for _, val : range vals {
+        total +=val
+    }
+    return total
+}
+```
+
+- Defer
+
+Defer is used to ensure that a function call is performed later in a program’s execution, usually for purposes of cleanup. defer is often used where e.g. ensure and finally would be used in other languages.
+
+- panic
+
+- Recover
+
+## method
+
+traditional function
+function with receiver
+function with a pointer receiver
+
+## interface
+
+## go routine and channel
+
+## concurrency with shared variables
+
+- race condition
+- mutual exclusion: sync.Mutex
+- Read write mutexes: sync.RWMutex
+
+## Testing
+
+## reflection
+
+## package and the go tool
+
+## Low-Level Programming
+
+- unsafe.Sizeof,  Alignof, and Offsetof
+- unsafe.Pointer
 
 ## [Go by examples](https://gobyexample.com/)
 
@@ -145,11 +211,6 @@ type Name interface {
 - mutex
 - stateful goroutines
 - sorting
-- panic
-
-- Defer
-
-Defer is used to ensure that a function call is performed later in a program’s execution, usually for purposes of cleanup. defer is often used where e.g. ensure and finally would be used in other languages.
 
 - regular expression
 - Json
