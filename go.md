@@ -77,6 +77,16 @@ go get  从远程代码仓库下载并安装
     -u update
 ```
 
+### variables
+
+2.3.2 a short variable declearation must declear at least one new variable, otherwise it will not compile.
+
+### 2.6 Packages and Files
+
+- 2.6.1 Imports
+- 2.6.2 Package Initialization
+- Scope
+
 ### types
 
 #### Basic data types
@@ -93,16 +103,28 @@ go get  从远程代码仓库下载并安装
 
 - constants constant generator iota(from 0)
 
-#### composite types
+#### aggregate types 聚合类型
+
+fixed size
 
 - arrays: fixed length, a[0], len(a), range a,
-- slice []string, append, s[1],range s, len(s),
+- structs
 
-array has its fixed length while slice is not
+### Reference types 引用类型（composite types）
+
+Pointers, slices, maps, functions, channels
+
+they all refer to program variables or state indirectly,
+
+for reference type the empty value is nil
+
+- slice []string, append, s[1],range s, len(s)
+
+- array has its fixed length while slice is not
 
 - map: use make, range, m['a']
 
-m = make(make[string]int)
+m = make(map[string]int)
 m["k1"] = 7
 m["k2"] = 8
 len(m)
@@ -112,12 +134,11 @@ _, pres = m["k2"]
 
 - struct
 - struct literals
+
 - JSON: basic types are numbers, bolleans, string
     json array and objects
 
     Converting a Go dat a structure like movies to JSON is called marshaling. `json.Marshal(movies)`, produce a byte slice. `json.Unmarshl`
-
-- interface
 - channel
 
 slice channel map 需要用make 生成
@@ -134,10 +155,6 @@ type Name interface {
 
 }
 ```
-
-任何类型的空值 nil
-
-### variables
 
 ## function
 
@@ -161,17 +178,17 @@ Defer is used to ensure that a function call is performed later in a program’s
 
 - Recover
 
-## method
+## Methods
 
 traditional function
 function with receiver
 function with a pointer receiver
 
-## interface
+## Interfaces
 
-## go routine and channel
+## Goroutine and Channels
 
-## concurrency with shared variables
+## Concurrency with shared variables
 
 - race condition
 - mutual exclusion: sync.Mutex
