@@ -140,6 +140,26 @@ _, pres = m["k2"]
 
     Converting a Go dat a structure like movies to JSON is called marshaling. `json.Marshal(movies)`, produce a byte slice. `json.Unmarshl`
 - channel
+    ch = make(chan int)
+    send  `ch <- val`
+    receive `val <- ch`
+    can be closed `close(ch)`
+
+buffered an unbuffered channel
+    ch = make(chan, int,  6)
+unbuffered channel : synchronous channels
+When a value is sent on an unbuffered channel, the receipt of the value happens before the
+reawakening of the sending goroutine.
+
+pipeline: counter -> squarer --> printer
+after a channel has been closed, any further send operations on it will panic. After the closed channel has been drained, that is, after the last sent element has been received, all subsquent receive operation will processd without blocking but will yield a zero value.
+
+iterate over a channel
+
+unidirectional channel types `chan<- int`, `<-chan int`
+
+cap(ch) // channel capacity
+len(ch) // current buffered size
 
 slice channel map 需要用make 生成
 range on arrays and slices provides both the index and value for each entry.
