@@ -145,11 +145,14 @@ _, pres = m["k2"]
     receive `val <- ch`
     can be closed `close(ch)`
 
+Channels support a third operat ion, close, which sets a flag indic ating that no more values will
+ever be sent on this channel; subsequent attempts to send will panic.Receive operat ions on a closed channel yield the values that have been sent until no more values are left; any receive
+operations thereafter complete immediately and yield the zero value of the channel’s element type.
+
 buffered an unbuffered channel
     ch = make(chan, int,  6)
 unbuffered channel : synchronous channels
-When a value is sent on an unbuffered channel, the receipt of the value happens before the
-reawakening of the sending goroutine.
+When a value is sent on an unbuffered channel, the receipt of the value happens before the reawakening of the sending goroutine.
 
 pipeline: counter -> squarer --> printer
 after a channel has been closed, any further send operations on it will panic. After the closed channel has been drained, that is, after the last sent element has been received, all subsquent receive operation will processd without blocking but will yield a zero value.
@@ -160,6 +163,8 @@ unidirectional channel types `chan<- int`, `<-chan int`
 
 cap(ch) // channel capacity
 len(ch) // current buffered size
+
+send and receive operations on a nil channel block forever, a case in a select statement whose channel is nil is never selected.
 
 slice channel map 需要用make 生成
 range on arrays and slices provides both the index and value for each entry.
@@ -223,9 +228,43 @@ a deferred Unlock will run even if the critical section panics.
 
 ## Testing
 
+tests, benchmarks, and examples
+
+Test Functions `*_test.go`, `*testing.T`
+Coverarge
+Profiling `*testing.B`
+
+```go
+go test bench=.
+```
+
 ## reflection
 
 ## package and the go tool
+
+import path
+the package declearation
+import declearation
+blank imoport
+Packages and Namings
+The Go Tool
+
+- Documenting Packages
+
+```go
+go doc time
+go doc time.Since
+go doc time.Duration.Seconds
+go doc -htto :8080
+```
+
+- Querying Packages
+
+``` go
+go list ...
+go list -json hash
+```
+
 
 ## Low-Level Programming
 
@@ -252,6 +291,7 @@ a deferred Unlock will run even if the critical section panics.
 
     atomic.AddUint64(&ops, 1)
     atomic.LoadUint64(&ops)
+
 - mutex
 - stateful goroutines
 - sorting
