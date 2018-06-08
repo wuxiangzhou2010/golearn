@@ -204,6 +204,8 @@ traditional function
 function with receiver
 function with a pointer receiver
 
+method value and method expression
+
 ## Interfaces
 
 ## Goroutine and Channels
@@ -213,6 +215,11 @@ function with a pointer receiver
 - race condition
 - mutual exclusion: sync.Mutex
 - Read write mutexes: sync.RWMutex
+
+multiple readers, single writer lock
+
+A semaphore that counts only to 1 is called a `binary semaphore`.
+a deferred Unlock will run even if the critical section panics.
 
 ## Testing
 
