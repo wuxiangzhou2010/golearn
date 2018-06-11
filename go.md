@@ -345,3 +345,13 @@ go test -bench=.
 ```
 
 [resources-for-new-go-programmers](https://dave.cheney.net/resources-for-new-go-programmers)
+
+## delve
+
+``` sh
+go get -u github.com/derekparker/delve/cmd/dlv
+
+dlv debug github.com/me/foo/cmd/foo
+
+dlv test github.com/me/foo/pkg/baz
+```
