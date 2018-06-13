@@ -213,6 +213,14 @@ method value and method expression
 
 ## Interfaces
 
+Concrete Typ | Interface Type
+-|-
+`map` `struct` `int` `string` `englishBot`| `bot`
+
+- interface are not generic types
+- interfaces are 'implicit'
+- interfaces are a contract to help us manage types
+
 ## Goroutine and Channels
 
 ## Concurrency with shared variables
