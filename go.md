@@ -363,3 +363,7 @@ dlv debug github.com/me/foo/cmd/foo
 
 dlv test github.com/me/foo/pkg/baz
 ```
+
+
+concurrency is about dealing a lot of things at once
+parallelism is about doing a lot of things at once
