@@ -273,7 +273,6 @@ go list ...
 go list -json hash
 ```
 
-
 ## Low-Level Programming
 
 - unsafe.Sizeof,  Alignof, and Offsetof
@@ -290,10 +289,42 @@ go list -json hash
 - [unblocking_channel](https://gobyexample.com/non-blocking-channel-operations)
 - closing channel
 - range over channel
+    channel need to be closed, otherwise there is deadlock
+
+``` go
+  for s:= range c{
+
+    }
+```
+
 - timer
+
+```go
+    timer1 := time.NewTimer(2 * time.Second)
+    <-timer1.C
+    time2 := time.NewTimer(time.Second)
+    go func() {
+        <- timer2.C
+    }()
+    stop2 := timer2.Stop()
+```
+
+     One reason a timer may be useful is that you can cancel the timer before it expires.
 - ticker
 
-    time.NewTicker(500 * time.Millisecond)
+``` go
+    ticker := time.NewTicker(500 * time.Millisecond)
+    go func(){
+        for t:= range ticker.C{
+            fmt.Println("Tick at", t)
+        }
+    }()
+    time.Sleep(1600 * time.Millisecond)
+    ticker.Stop()
+    fmt.Println("Ticker stopped")
+```
+
+- worker pools
 
 - sync/atomic
 
@@ -316,7 +347,29 @@ go list -json hash
 - environment variables
 - executing processes
 - signals os/signal syscall
+
+  gracefully shutdown the server when receive a SIGTERM
+
+```go
+    sigs := make(chan os.Signal, 1)
+    done := make(chan bool, 1)
+
+    signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
+
+    go func(){
+        sig := <-sigs
+        fmt.Println()
+        fmt.Println(sig)
+        done <- true
+    }
+    fmt.Println("awaiting signal")
+    <- done
+    fmt.Println("exiting")
+```
+
 - exit
+
+    os.Exit(3) //defer will not be run when using os.Exit
 
 channel 只能用make 创建 c := make(chan int)
 unbuffered channel c := make(chan init) c := make(chan int, 0)
@@ -363,7 +416,6 @@ dlv debug github.com/me/foo/cmd/foo
 
 dlv test github.com/me/foo/pkg/baz
 ```
-
 
 concurrency is about dealing a lot of things at once
 parallelism is about doing a lot of things at once
