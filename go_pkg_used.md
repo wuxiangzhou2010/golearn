@@ -61,6 +61,8 @@
 
 - context
 
+Package contex defines the Contex type, which carries deadlines, cancelation signals, and other request-scoped values across API boundaries and between processes.
+
     c := context.Context
     c.Value()
     c.WithValue()
