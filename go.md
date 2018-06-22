@@ -221,6 +221,24 @@ Concrete Typ | Interface Type
 - interfaces are 'implicit'
 - interfaces are a contract to help us manage types
 
+### 7.5. Int erface Values
+
+The zero value for an interface has both its type and value components set to nil
+Calling any met hod of a nil interface value causes a panic
+
+The interface value’s dynamic type is set to the type descriptor for the pointer type *os.File, and its dynamic value holds a copy of os.Stdout, which is a pointer to the os.File variable representing the standard output of the process
+
+call through an interface must use dynamic dispatch
+
+interface|
+-|
+type descriptor|
+value|
+|
+
+slice, maps, function type is not comparable
+When handling errors, or during debugging, it is often helpful to report the dynamic type of an interface value. For that, we use the fmt package’s `%T `verb:
+
 ## Goroutine and Channels
 
 ## Concurrency with shared variables
