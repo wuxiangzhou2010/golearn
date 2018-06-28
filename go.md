@@ -221,7 +221,7 @@ Concrete Typ | Interface Type
 - interfaces are 'implicit'
 - interfaces are a contract to help us manage types
 
-### 7.5. Int erface Values
+### 7.5. Interface Values
 
 The zero value for an interface has both its type and value components set to nil
 Calling any met hod of a nil interface value causes a panic
