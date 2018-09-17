@@ -6,8 +6,8 @@ refer to: `https://tour.golang.org/list`
 
         rand.Intn(10)
 - imports
-  
-  math.Sqrt(7)
+
+        math.Sqrt(7)
 - exported names
 - functions
 - multiple results
