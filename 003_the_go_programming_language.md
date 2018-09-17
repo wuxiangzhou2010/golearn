@@ -1,95 +1,18 @@
-# compile go from source
+# go
 
-1. go/gccgo
-2. supported arch amd64/386/arm/arm64/ppc64/ppc64le/mips/mipsle/mips64/,ips64le/s39x
-3. build the bootstrap(go1.4)/crosscompile
-4. fetch the source
-
-    ``` sh
-        git clone https://go.googlesource.com/go
-    ```
-5. checkout branch
-6. build
-
-    ``` sh
-    cd src
-    ./all.bash
-    ```
-environment
-    $GOOS $GOARCH
-    $GOROOT_BOOTSTRAP
-
-## [Install go](https://golang.org/doc/install)
-
-Download [link](https://golang.org/dl/)
-
-``` sh
-wget https://dl.google.com/go/go1.10.linux-amd64.tar.gz
-# creating a Go tree in /usr/local/go
-tar -C /usr/local -xzf go1.10.linux-amd64.tar.gz
-
-# Add /usr/local/go/bin to the PATH environment variable.
-export PATH=$PATH:/usr/local/go/bin
-export GOPATH=~/go
-export GOROOT=/usr/local/go
-export PATH=$PATH:$GOROOT/bin
-
-```
-
-### Installing to a custom location
-
-``` sh
-# need to set the following
-export GOROOT=$HOME/go1.X
-export PATH=$PATH:$GOROOT/bin
-```
-
-Uninstalling Go
-
-``` sh
-rm -rf /usr/local/go
-# Remove  PATH environment variable
-```
-
-[A tour of Go](https://tour.golang.org/list)
-
-[go command](https://www.imooc.com/video/7208)
-
-``` sh
-go env GOPATH
-go env GOROOT
-
-go build
-    编译源码文件， 代码包， 代码包不产生任何可执行文件，
-go run
-  -a 强制编译相关代码
-  -n/x 打印编译过程中所运行的命令， 而不实际执行, -x 真正执行
-  -p n  b 并行编译，n 为并行的数量
-  -v 列出被编译的代码包名称
-  -a -v 列出所有被编译的代码包的名称
-  -work 显示编译时船舰的临时工作目录的路径， 并且不删除它、
-
-go install 编译并安装源码文件或者代码包
-
-go get  从远程代码仓库下载并安装
-    -d  只下载， 不安装
-    -fix 下载后进行修正动作
-    -u update
-```
-
-### variables
+## variables
 
 2.3.2 a short variable declearation must declear at least one new variable, otherwise it will not compile.
 
-### 2.6 Packages and Files
+## 2.6 Packages and Files
 
 - 2.6.1 Imports
 - 2.6.2 Package Initialization
 - Scope
 
-### types
+## types
 
-#### Basic data types
+## Basic data types
 
 - numbers
   - int
@@ -103,14 +26,14 @@ go get  从远程代码仓库下载并安装
 
 - constants constant generator iota(from 0)
 
-#### aggregate types 聚合类型
+## aggregate types 聚合类型
 
 fixed size
 
 - arrays: fixed length, a[0], len(a), range a,
 - structs
 
-### Reference types 引用类型（composite types）
+## Reference types 引用类型（composite types）
 
 Pointers, slices, maps, functions, channels
 
@@ -221,7 +144,7 @@ Concrete Typ | Interface Type
 - interfaces are 'implicit'
 - interfaces are a contract to help us manage types
 
-### 7.5. Interface Values
+## 7.5. Interface Values
 
 The zero value for an interface has both its type and value components set to nil
 Calling any met hod of a nil interface value causes a panic
@@ -415,63 +338,7 @@ Some elements of Go step further from C, even C++ and Java:
     reflection
     type switch
 
-[go build tags](https://golang.org/pkg/go/build/)
+resources-for-new-go-programmers: `https://dave.cheney.net/resources-for-new-go-programmers`
 
-[go benchmark](https://dave.cheney.net/2013/06/30/how-to-write-benchmarks-in-go)
-
-``` sh
-go test -bench=.
-```
-
-[resources-for-new-go-programmers](https://dave.cheney.net/resources-for-new-go-programmers)
-
-## delve
-
-    args ------------------------ Print function arguments.
-    break (alias: b) ------------ Sets a breakpoint.
-    breakpoints (alias: bp) ----- Print out info for active breakpoints.
-    clear ----------------------- Deletes breakpoint.
-    clearall -------------------- Deletes multiple breakpoints.
-    condition (alias: cond) ----- Set breakpoint condition.
-    config ---------------------- Changes configuration parameters.
-    continue (alias: c) --------- Run until breakpoint or program termination.
-    disassemble (alias: disass) - Disassembler.
-    down ------------------------ Move the current frame down.
-    exit (alias: quit | q) ------ Exit the debugger.
-    frame ----------------------- Set the current frame, or execute command on a different frame.
-    funcs ----------------------- Print list of functions.
-    goroutine ------------------- Shows or changes current goroutine
-    goroutines ------------------ List program goroutines.
-    help (alias: h) ------------- Prints the help message.
-    list (alias: ls | l) -------- Show source code.
-    locals ---------------------- Print local variables.
-    next (alias: n) ------------- Step over to next source line.
-    on -------------------------- Executes a command when a breakpoint is hit.
-    print (alias: p) ------------ Evaluate an expression.
-    regs ------------------------ Print contents of CPU registers.
-    restart (alias: r) ---------- Restart process.
-    set ------------------------- Changes the value of a variable.
-    source ---------------------- Executes a file containing a list of delve commands
-    sources --------------------- Print list of source files.
-    stack (alias: bt) ----------- Print stack trace.
-    step (alias: s) ------------- Single step through program.
-    step-instruction (alias: si)  Single step a single cpu instruction.
-    stepout --------------------- Step out of the current function.
-    thread (alias: tr) ---------- Switch to the specified thread.
-    threads --------------------- Print out info for every traced thread.
-    trace (alias: t) ------------ Set tracepoint.
-    types ----------------------- Print list of types
-    up -------------------------- Move the current frame up.
-    vars ------------------------ Print package variables.
-    whatis ---------------------- Prints type of an expressio
-
-``` sh
-go get -u github.com/derekparker/delve/cmd/dlv
-
-dlv debug github.com/me/foo/cmd/foo
-
-dlv test github.com/me/foo/pkg/baz
-```
-
-concurrency is about dealing a lot of things at once
-parallelism is about doing a lot of things at once
+- concurrency is about dealing a lot of things at once
+- parallelism is about doing a lot of things at once
