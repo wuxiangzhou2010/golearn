@@ -207,3 +207,8 @@ refer to: `https://tour.golang.org/list`
 
         A select blocks until one of its cases can run, then it executes that case. It chooses one at random if multiple are ready
 - sync.Mutex
+- sync.WaitGroup
+  - type WaitGroup
+  - func (*WaitGroup) Add
+  - func (*WaitGroup) Done
+  - func (*WaitGroup) Wait
