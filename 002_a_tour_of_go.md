@@ -114,7 +114,12 @@ refer to: `https://tour.golang.org/list`
         `func append(s []T, vs ...T) []T`
 - range
 
-        When ranging over a slice, two values are returned for each iteration. Th`e first is the index`, and `the second is a copy of the element at that index`.
+        When ranging over a slice, two values are returned for each iteration. `The first is the index`, and `the second is a copy of the element at that index`.
+
+[golang slice 详解](https://blog.csdn.net/cyk2396/article/details/78893420)
+
+- 数组切片看起来是引用传递，其实是值传递
+
 - range continued
 
         You can skip the index or value by assigning to _.
@@ -123,6 +128,7 @@ refer to: `https://tour.golang.org/list`
         A map maps keys to values.
         The zero value of a map is nil.
         The make function returns a map of the given type, initialized and ready for use.
+
 - map literals
 - map literals continued
 
@@ -212,3 +218,11 @@ refer to: `https://tour.golang.org/list`
   - func (*WaitGroup) Add
   - func (*WaitGroup) Done
   - func (*WaitGroup) Wait
+
+new和make区别
+
+new(T) 可以用来创建普通类型，返回一个指向初始化T值的指针。
+make(S) 只能用来创建slice，map，channel。返回一个初始化的S值(相当于指针)。
+
+map： 在go中key可以是除了func，array,slice,map类型之外的类型
+Golang中只有三种引用类型：slice(切片)、map(字典)、channel(管道)；
