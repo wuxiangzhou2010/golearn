@@ -26,15 +26,16 @@ environment
 Download link: `https://golang.org/dl/`
 
 ``` sh
-wget https://dl.google.com/go/go1.10.linux-amd64.tar.gz
+wget https://dl.google.com/go/go1.11.4.linux-amd64.tar.gz
 # creating a Go tree in /usr/local/go
-tar -C /usr/local -xzf go1.10.linux-amd64.tar.gz
+sudo -s
+tar -C /usr/local -xzf go1.11.4.linux-amd64.tar.gz
 
 # Add /usr/local/go/bin to the PATH environment variable.
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=~/go
 export GOROOT=/usr/local/go
-export PATH=$PATH:$GOROOT/bin
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 ```
 
 <!-- ## Installing to a custom location
