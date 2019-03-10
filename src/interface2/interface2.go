@@ -1,5 +1,7 @@
 package main
 
+// 1. rect and circle implement gepmetry, they can be used as gepmetry variable
+
 import (
 	"fmt"
 	"math"
