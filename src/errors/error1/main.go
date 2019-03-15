@@ -17,18 +17,18 @@ func main() {
 	var i []int         // this is a nil []int  print value is []
 	var errs multiError // this is a nil errs, print value is multierr
 	if errs == nil {
-		fmt.Println("errs is nil ", errs) // it equals to nil
+		fmt.Println("1. default declearation 'var errs multiError' is nil, print value is ==> ", errs) // it equals to nil
 	}
 	errs2 := multiError{}
 
 	if errs2 != nil {
-		fmt.Println("errs2 is not nil", errs2) // it equals to nil
+		fmt.Println("2. empty declearation 'errs2 := multiError{}' is not nil, print value is ==> ", errs2) // it equals to nil
 	}
 	if i == nil {
-		fmt.Println("i is nil ")
+		fmt.Println("3. default declearation of 'var i []int' i is nil, print value is  ", i)
 	}
-	fmt.Println("e is ", e, "combine is ", Combine(e), "ints ", i)
-	fmt.Printf("ints %+v\n", i)
+	fmt.Println("5. print value of \n default error e is ", e, "\n combine is ", Combine(e))
+
 }
 func (e multiError) Error() string {
 	// if e == nil {
@@ -52,7 +52,7 @@ func Combine(maybeError ...error) error {
 		}
 	}
 	if len(errs) == 0 {
-		fmt.Println("len(errs) == 0 errs = ", errs)
+		fmt.Println("4. default value of len(errs) == 0 errs = ", errs)
 		return nil
 	}
 	return errs
