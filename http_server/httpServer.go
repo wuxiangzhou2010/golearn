@@ -1,5 +1,8 @@
 package main
 
+// 1. basic http proxy
+
+//  test command: http_proxy="socks5://127.0.0.1:8081" wget sina.com:80
 import (
 	"bytes"
 	"fmt"
@@ -20,7 +23,6 @@ func main() {
 
 	for {
 		client, err := l.Accept()
-		fmt.Println("new request")
 		if err != nil {
 			log.Panic(err)
 		}
@@ -44,7 +46,8 @@ func handleClientRequest(client net.Conn) {
 	}
 
 	var method, host, address string
-	fmt.Println("b==>", string(b[:]))
+	fmt.Println("1. ==> firt message from the client==>")
+	fmt.Println("===============================\n", string(b[:128]), "\n===============================")
 	fmt.Sscanf(string(b[:bytes.IndexByte(b[:], '\n')]), "%s%s", &method, &host)
 	fmt.Printf("method = %s,host = %s\n", method, host)
 	hostPortURL, err := url.Parse(host)
@@ -53,7 +56,7 @@ func handleClientRequest(client net.Conn) {
 		log.Println(err)
 		return
 	}
-
+	// parse server port and address
 	if hostPortURL.Opaque == "443" {
 		address = hostPortURL.Scheme + ":443"
 	} else {
@@ -70,9 +73,13 @@ func handleClientRequest(client net.Conn) {
 		return
 	}
 
+	// if CONNECT method
 	if method == "CONNECT" {
-		fmt.Fprint(client, "HTTP/1.1 200 Connection established\r\n\r\n")
+		connectrespmsg := "HTTP/1.1 200 Connection established\r\n\r\n"
+		fmt.Fprint(client, connectrespmsg)
+		fmt.Println("<== server respond CONNECT method with  ", connectrespmsg)
 	} else {
+		//command  like GET ...
 		server.Write(b[:n])
 	}
 
