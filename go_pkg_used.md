@@ -92,6 +92,9 @@ Package contex defines the Contex type, which carries deadlines, cancelation sig
   hex.EncodeToString() //returns hexadecimal encoding of src
   hex.Decode()/Encode()
 
+- encoding/json
+- regexp
+
 - Bytes
 
   bytes.Equal()
@@ -103,3 +106,7 @@ Package contex defines the Contex type, which carries deadlines, cancelation sig
 
   time.Duration
   time.NewTimer()
+
+- bufio
+
+- log
