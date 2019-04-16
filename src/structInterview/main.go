@@ -8,5 +8,10 @@ type Show struct {
 
 func main() {
 	s := new(Show)
-	s.Param["RMB"] = 10000
+	s.Param["RMB"] = 10000 // panic: assignment to entry in nil map
 }
+
+/*
+reference:
+https://zhuanlan.zhihu.com/p/35058068  issue1
+*/
