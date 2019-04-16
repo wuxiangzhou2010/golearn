@@ -127,3 +127,5 @@ go-torch -inuse_space http://localhost:6060/debug/pprof/heap --colors=mem
 reference:
 
 - [brendangregg](http://www.brendangregg.com/flamegraphs.html)
+
+- [Go:strings.Replace 与 bytes.Replace 调优](https://zhuanlan.zhihu.com/p/56217644)
