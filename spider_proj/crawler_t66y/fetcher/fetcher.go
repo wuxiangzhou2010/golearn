@@ -3,13 +3,12 @@ package fetcher
 import (
 	"bufio"
 	"fmt"
-	"io/ioutil"
-	"net/http"
-
 	"golang.org/x/net/html/charset"
 	"golang.org/x/text/encoding"
 	"golang.org/x/text/encoding/unicode"
 	"golang.org/x/text/transform"
+	"io/ioutil"
+	"net/http"
 )
 
 type Fetcher interface {
@@ -17,7 +16,7 @@ type Fetcher interface {
 }
 
 func Fetch(url string) ([]byte, error) {
-	res, err := http.Get("http://www.zhenai.com/zhenghun")
+	res, err := http.Get(url)
 	if err != nil {
 		//panic(err)
 		return nil, err
