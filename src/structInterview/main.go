@@ -3,7 +3,7 @@ package main
 type Param map[string]interface{}
 
 type Show struct {
-	Param  // map必须make 否则为nil
+	Param // map必须make 否则为nil
 }
 
 func main() {
