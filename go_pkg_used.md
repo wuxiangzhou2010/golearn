@@ -66,6 +66,12 @@
   // 原子交换 swap
   // 原子比较交换 compare and swap
 
+- sync.pool
+
+  reference:
+
+- [《GO 并发编程实战》—— 临时对象池](http://ifeve.com/go-concurrency-object-pool/)
+
 - context
 
 Package contex defines the Contex type, which carries deadlines, cancelation signals, and other request-scoped values across API boundaries and between processes.
