@@ -15,6 +15,7 @@
 ## Basic data types
 
 - numbers
+
   - int
   - float:
     Go provides two sizes of floating-point numbers, float32 and float64
@@ -22,7 +23,7 @@
 
 - booleans: trure or false
 - strings: immutable sequence of bytes, can use index s[1], len, s[i:j]
-    four standard packages are particularly important for manipulating strings: bytes, strings, strconv and unicode.
+  four standard packages are particularly important for manipulating strings: bytes, strings, strconv and unicode.
 
 - constants constant generator iota(from 0)
 
@@ -52,28 +53,29 @@ m["k1"] = 7
 m["k2"] = 8
 len(m)
 delete["k1"]
-_, pres = m["k2"]
-    pres indicate whether the value presents with the given key
+\_, pres = m["k2"]
+pres indicate whether the value presents with the given key
 
 - struct
 - struct literals
 
 - JSON: basic types are numbers, bolleans, string
-    json array and objects
+  json array and objects
 
-    Converting a Go dat a structure like movies to JSON is called marshaling. `json.Marshal(movies)`, produce a byte slice. `json.Unmarshl`
+  Converting a Go dat a structure like movies to JSON is called marshaling. `json.Marshal(movies)`, produce a byte slice. `json.Unmarshl`
+
 - channel
-    ch = make(chan int)
-    send  `ch <- val`
-    receive `val <- ch`
-    can be closed `close(ch)`
+  ch = make(chan int)
+  send `ch <- val`
+  receive `val <- ch`
+  can be closed `close(ch)`
 
 Channels support a third operat ion, close, which sets a flag indic ating that no more values will
 ever be sent on this channel; subsequent attempts to send will panic.Receive operat ions on a closed channel yield the values that have been sent until no more values are left; any receive
 operations thereafter complete immediately and yield the zero value of the channel’s element type.
 
 buffered an unbuffered channel
-    ch = make(chan, int,  6)
+ch = make(chan, int, 6)
 unbuffered channel : synchronous channels
 When a value is sent on an unbuffered channel, the receipt of the value happens before the reawakening of the sending goroutine.
 
@@ -89,13 +91,13 @@ len(ch) // current buffered size
 
 send and receive operations on a nil channel block forever, a case in a select statement whose channel is nil is never selected.
 
-slice channel map 需要用make 生成
+slice channel map 需要用 make 生成
 range on arrays and slices provides both the index and value for each entry.
 first index and then entry.
 range on map provide the key and value, if only one is provided(key), it works too.
 range over string, indexn and char
 
-``` go
+```go
 type Name struct {
 
 }
@@ -136,9 +138,9 @@ method value and method expression
 
 ## Interfaces
 
-Concrete Typ | Interface Type
--|-
-`map` `struct` `int` `string` `englishBot`| `bot`
+| Concrete Typ                               | Interface Type |
+| ------------------------------------------ | -------------- |
+| `map` `struct` `int` `string` `englishBot` | `bot`          |
 
 - interface are not generic types
 - interfaces are 'implicit'
@@ -149,18 +151,19 @@ Concrete Typ | Interface Type
 The zero value for an interface has both its type and value components set to nil
 Calling any met hod of a nil interface value causes a panic
 
-The interface value’s dynamic type is set to the type descriptor for the pointer type *os.File, and its dynamic value holds a copy of os.Stdout, which is a pointer to the os.File variable representing the standard output of the process
+The interface value’s dynamic type is set to the type descriptor for the pointer type \*os.File, and its dynamic value holds a copy of os.Stdout, which is a pointer to the os.File variable representing the standard output of the process
 
 call through an interface must use dynamic dispatch
 
-interface|
--|
-type descriptor|
-value|
+| interface       |
+| --------------- |
+| type descriptor |
+| value           |
+
 |
 
 slice, maps, function type is not comparable
-When handling errors, or during debugging, it is often helpful to report the dynamic type of an interface value. For that, we use the fmt package’s `%T `verb:
+When handling errors, or during debugging, it is often helpful to report the dynamic type of an interface value. For that, we use the fmt package’s `%T`verb:
 
 ## Goroutine and Channels
 
@@ -209,14 +212,18 @@ godoc -http :8080
 
 - Querying Packages
 
-``` go
+```go
 go list ...
 go list -json hash
 ```
 
+reference:
+
+- [go-tool-flags](https://rakyll.org/go-tool-flags/)
+
 ## Low-Level Programming
 
-- unsafe.Sizeof,  Alignof, and Offsetof
+- unsafe.Sizeof, Alignof, and Offsetof
 - unsafe.Pointer
 
 ## [Go by examples](https://gobyexample.com/)
@@ -230,9 +237,9 @@ go list -json hash
 - [unblocking_channel](https://gobyexample.com/non-blocking-channel-operations)
 - closing channel
 - range over channel
-    channel need to be closed, otherwise there is deadlock
+  channel need to be closed, otherwise there is deadlock
 
-``` go
+```go
   for s:= range c{
 
     }
@@ -251,9 +258,10 @@ go list -json hash
 ```
 
      One reason a timer may be useful is that you can cancel the timer before it expires.
+
 - ticker
 
-``` go
+```go
     ticker := time.NewTicker(500 * time.Millisecond)
     go func(){
         for t:= range ticker.C{
@@ -269,8 +277,8 @@ go list -json hash
 
 - sync/atomic
 
-    atomic.AddUint64(&ops, 1)
-    atomic.LoadUint64(&ops)
+  atomic.AddUint64(&ops, 1)
+  atomic.LoadUint64(&ops)
 
 - mutex
 - stateful goroutines
@@ -310,13 +318,13 @@ go list -json hash
 
 - exit
 
-    os.Exit(3) //defer will not be run when using os.Exit
+  os.Exit(3) //defer will not be run when using os.Exit
 
-channel 只能用make 创建 c := make(chan int)
+channel 只能用 make 创建 c := make(chan int)
 unbuffered channel c := make(chan init) c := make(chan int, 0)
-buffered channel  c := make(chan int, 10)
+buffered channel c := make(chan int, 10)
 
-goroutine 不同于线程， 一个线程可以包含数个goroutine, 如果线程被阻塞， 则使用其他线程， 如果没有线程， 则开辟新线程，
+goroutine 不同于线程， 一个线程可以包含数个 goroutine, 如果线程被阻塞， 则使用其他线程， 如果没有线程， 则开辟新线程，
 ， 开辟后不删除， 即动态增加的线程
 
 close channel twice `panic`
