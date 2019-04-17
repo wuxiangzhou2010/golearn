@@ -16,15 +16,15 @@ func ParseCityList(contents []byte) *engine.ParseResult {
 	result := engine.NewParseResult()
 	i := 0
 	for _, m := range matches {
-		//result.Items = append(result.Items, "City: "+string(m[2]))
 		result.Requests = append(result.Requests, engine.Request{
 			Url:        string(m[1]),
 			ParserFunc: ParseCity,
 			Agent:      chromedp.NewAgent(),
 			Name:       "City: " + string(m[2]),
 		})
+		result.Items = append(result.Items, "City: "+string(m[2]))
 		i++
-		if i > 5 {
+		if i > 3 {
 			return result
 		}
 	}
