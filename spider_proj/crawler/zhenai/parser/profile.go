@@ -12,7 +12,7 @@ var nameRe = regexp.MustCompile(`<span class="nickName" data-v-3c42fade="">([^<]
 var ageRe = regexp.MustCompile(`<div class="m-btn purple" data-v-bff6f798="">([^<]+)岁</div>`)
 var marriageRe = regexp.MustCompile(`<div class="m-btn purple" data-v-bff6f798="">([^<]+)</div>`)
 
-func ParseProfile(contents []byte) engine.ParseResult {
+func ParseProfile(contents []byte) *engine.ParseResult {
 
 	profile := model.Profile{}
 
@@ -21,10 +21,8 @@ func ParseProfile(contents []byte) engine.ParseResult {
 		profile.Age = age
 	}
 	profile.Marriage = extractString(contents, marriageRe)
-	result := engine.ParseResult{}
-	result = engine.ParseResult{
-		Items: []interface{}{profile},
-	}
+	result := engine.NewParseResult()
+	result.Items= []interface{}{profile}
 	return result
 }
 func extractString(contents []byte, re *regexp.Regexp) string {

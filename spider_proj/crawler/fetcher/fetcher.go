@@ -3,6 +3,7 @@ package fetcher
 import (
 	"bufio"
 	"fmt"
+	"github.com/wuxiangzhou2010/daily_learning/go/spider_proj/crawler/util/agent"
 	"io/ioutil"
 	"net/http"
 
@@ -17,7 +18,7 @@ type Fetcher interface {
 }
 
 func Fetch(url string) ([]byte, error) {
-	res, err := http.Get("http://www.zhenai.com/zhenghun")
+	res, err := agent.MyhttpGet("http://www.zhenai.com/zhenghun")
 	if err != nil {
 		//panic(err)
 		return nil, err

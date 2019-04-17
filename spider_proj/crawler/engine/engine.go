@@ -1,7 +1,7 @@
 package engine
 
 import (
-	"github.com/wuxiangzhou2010/daily_learning/go/spider_proj/crawler/fetcher"
+	"io/ioutil"
 	"log"
 )
 
@@ -14,17 +14,26 @@ func Run(seeds ...Request) {
 		r := requests[0]
 		requests = requests[1:]
 		log.Printf("Fetching %s\n", r.Url)
-		body, err := fetcher.Fetch(r.Url)
-		if err != nil {
-			log.Printf("Fetcher : error "+"fetching url %s: %v", r.Url, err)
-			continue
-		}
 
-		ParseResult := r.ParserFunc(body)
-		requests = append(requests, ParseResult.Requests...)
-		for _, item := range ParseResult.Items {
+		result:= worker(r)
+		requests = append(requests, result.Requests...)
+		for _, item := range result.Items {
 			log.Printf("Got item %s", item)
 		}
 
 	}
+}
+
+
+func worker(r Request) *ParseResult{
+	re, err := r.Agent.Get(r.Url)
+	if err != nil {
+		panic(err)
+	}
+	all, err := ioutil.ReadAll(re)
+	if err != nil {
+		panic(err)
+	}
+	return  r.ParserFunc(all)
+
 }
