@@ -4,7 +4,7 @@ type Profile struct {
 	Name       string
 	Gender     string
 	Age        int
-	Heigth     int
+	Height     string
 	Weight     int
 	Income     string
 	Marriage   string
@@ -14,4 +14,5 @@ type Profile struct {
 	Xingzuo    string
 	House      string
 	Car        string
+	Place      string
 }

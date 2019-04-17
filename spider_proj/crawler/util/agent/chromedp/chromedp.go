@@ -2,11 +2,13 @@ package chromedp
 
 import (
 	"context"
-	"github.com/chromedp/chromedp"
+	"fmt"
 	"io"
 	"log"
 	"strings"
 	"time"
+
+	"github.com/chromedp/chromedp"
 )
 
 type Agent struct {
@@ -16,8 +18,8 @@ func NewAgent() *Agent {
 	return &Agent{}
 }
 
-func (c *Agent) Get(url string) ( io.Reader, error) {
-
+func (c *Agent) Get(url string) (io.Reader, error) {
+	t1 := time.Now()
 	// create chrome instance
 	ctx, cancel := chromedp.NewContext(
 		context.Background(),
@@ -36,15 +38,18 @@ func (c *Agent) Get(url string) ( io.Reader, error) {
 		// 访问页面
 		chromedp.Navigate(url),
 		// 等待列表渲染
-		chromedp.Sleep(5*time.Second),
+		//chromedp.Sleep(5*time.Second),
 		// 获取获取服务列表HTML
+		chromedp.WaitVisible(`#app`),
 		chromedp.OuterHTML("#app", &example, chromedp.ByID),
 	)
+	t2 := time.Now()
+
+	fmt.Println("time used: ", t2.Sub(t1))
 	if err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
 	//fmt.Printf("Get contents: %s", example)
-	sr:= strings.NewReader(example)
+	sr := strings.NewReader(example)
 	return sr, nil
 }
-

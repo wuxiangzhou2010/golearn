@@ -9,12 +9,11 @@ import (
 	"regexp"
 )
 
-
 var cityRe = regexp.MustCompile(`<a href="(http://album.zhenai.com/u/[0-9]+)" target="_blank">([^<]+)</a>`)
 
 func ParseCity(contents []byte) *engine.ParseResult {
 	//re := regexp.MustCompile(cityRe)
-	fmt.Printf("ParseCity")
+	fmt.Printf("ParseCity ")
 
 	contents = []byte(str.DelLongSlash(string(contents)))
 	matches := cityRe.FindAllSubmatch(contents, -1)
@@ -25,13 +24,14 @@ func ParseCity(contents []byte) *engine.ParseResult {
 		result.Requests = append(result.Requests, engine.Request{ // what need to be process again
 			Url:        string(m[1]),
 			ParserFunc: ParseProfile,
-			Agent: chromedp.NewAgent(),
-			Name:  string(m[2]),
+			Agent:      chromedp.NewAgent(),
+			Name:       string(m[2]),
 		})
-
-		fmt.Printf("link: %s  nickname: %s\n", m[1], m[2])
+		result.Items = append(result.Items, string(m[2])) //name
+		//fmt.Printf("link: %s  nickname: %s\n", m[1], m[2])
 
 	}
 
-	return engine.NewParseResult() // nil
+	//return engine.NewParseResult() // nil
+	return result
 }

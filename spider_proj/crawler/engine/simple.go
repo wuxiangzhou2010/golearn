@@ -15,25 +15,27 @@ func Run(seeds ...Request) {
 		requests = requests[1:]
 		log.Printf("Fetching %s\n", r.Url)
 
-		result:= worker(r)
+		result, err := worker(&r)
+		if err != nil {
+			panic(err)
+		}
 		requests = append(requests, result.Requests...)
 		for _, item := range result.Items {
-			log.Printf("Got item %s", item)
+			log.Printf("Got item %s \n", item)
 		}
 
 	}
 }
 
-
-func worker(r Request) *ParseResult{
+func worker(r *Request) (*ParseResult, error) {
 	re, err := r.Agent.Get(r.Url)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 	all, err := ioutil.ReadAll(re)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
-	return  r.ParserFunc(all)
+	return r.ParserFunc(all), nil
 
 }

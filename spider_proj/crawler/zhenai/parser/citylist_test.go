@@ -10,7 +10,7 @@ func TestParseCityList(t *testing.T) {
 	contents, err := ioutil.ReadFile(
 		"citylist_test_data.html")
 	if err != nil {
-		panic(err)
+		t.Fatal(err)
 	}
 	//fmt.Printf("%s", contents)
 	result := ParseCityList(contents)

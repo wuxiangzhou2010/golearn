@@ -14,7 +14,7 @@ func NewAgent() *Agent {
 	return &Agent{}
 }
 
-func (m *Agent) Get(url string) ( io.Reader,  error) {
+func (m *Agent) Get(url string) (io.Reader, error) {
 	client := &http.Client{}
 
 	req, err := http.NewRequest("GET", url, nil)
@@ -32,11 +32,11 @@ func (m *Agent) Get(url string) ( io.Reader,  error) {
 	defer resp.Body.Close() // close reader closer
 
 	bs, err := ioutil.ReadAll(resp.Body)
-	if err !=nil {
-		panic(err)
+	if err != nil {
+		return nil, err
 	}
 
-	br:=bytes.NewReader(bs)
+	br := bytes.NewReader(bs)
 	return br, nil
 
 }

@@ -3,9 +3,10 @@ package fetcher
 import (
 	"bufio"
 	"fmt"
-	"github.com/wuxiangzhou2010/daily_learning/go/spider_proj/crawler/util/agent"
 	"io/ioutil"
 	"net/http"
+
+	"github.com/wuxiangzhou2010/daily_learning/go/spider_proj/crawler/util/agent"
 
 	"golang.org/x/net/html/charset"
 	"golang.org/x/text/encoding"
@@ -20,7 +21,7 @@ type Fetcher interface {
 func Fetch(url string) ([]byte, error) {
 	res, err := agent.MyhttpGet("http://www.zhenai.com/zhenghun")
 	if err != nil {
-		//panic(err)
+
 		return nil, err
 	}
 	if res.StatusCode != http.StatusOK {

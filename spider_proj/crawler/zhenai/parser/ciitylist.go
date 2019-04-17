@@ -14,15 +14,19 @@ func ParseCityList(contents []byte) *engine.ParseResult {
 	//re := regexp.MustCompile(cityListRe)
 	matches := cityListRe.FindAllSubmatch(contents, -1)
 	result := engine.NewParseResult()
+	i := 0
 	for _, m := range matches {
 		//result.Items = append(result.Items, "City: "+string(m[2]))
 		result.Requests = append(result.Requests, engine.Request{
 			Url:        string(m[1]),
 			ParserFunc: ParseCity,
-			Agent: chromedp.NewAgent(),
-			Name: "City: " + string(m[2]),
+			Agent:      chromedp.NewAgent(),
+			Name:       "City: " + string(m[2]),
 		})
-
+		i++
+		if i > 5 {
+			return result
+		}
 	}
 	return result
 
