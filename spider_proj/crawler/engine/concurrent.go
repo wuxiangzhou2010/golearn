@@ -2,6 +2,7 @@ package engine
 
 import (
 	"fmt"
+	"github.com/wuxiangzhou2010/daily_learning/go/spider_proj/crawler/model"
 	"log"
 )
 
@@ -29,12 +30,18 @@ func (e *ConcurrentEngine) Run(seeds ...Request) {
 	for _, r := range seeds {
 		e.Scheduler.Submit(r)
 	}
-
+	userLen := 0
 	for {
 		result := <-out
 
 		for _, item := range result.Items {
-			log.Printf("Got item: %v \n", item)
+			if v, ok := item.(model.Profile); ok {
+				log.Printf("#%d: %v \n", userLen, v) // for profile
+				userLen++
+
+			} else {
+				//log.Printf("Got item: %+v \n", item) // for city  and user name
+			}
 		}
 		for _, request := range result.Requests {
 			e.Scheduler.Submit(request)

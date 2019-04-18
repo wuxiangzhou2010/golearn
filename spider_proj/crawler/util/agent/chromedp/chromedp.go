@@ -18,7 +18,7 @@ func NewAgent() *Agent {
 }
 
 func (c *Agent) Get(url string) (io.Reader, error) {
-	t1 := time.Now()
+	//t1 := time.Now()
 	// create chrome instance
 	ctx, cancel := chromedp.NewContext(
 		context.Background(),
@@ -42,9 +42,9 @@ func (c *Agent) Get(url string) (io.Reader, error) {
 		chromedp.WaitVisible(`#app`),
 		chromedp.OuterHTML("#app", &example, chromedp.ByID),
 	)
-	t2 := time.Now()
+	//t2 := time.Now()
 
-	log.Println("time used: ", t2.Sub(t1), " to get ", url)
+	//log.Println("time used: ", t2.Sub(t1), " to get ", url)
 	if err != nil {
 		return nil, err
 	}

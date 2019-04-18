@@ -24,7 +24,7 @@ func ParseCityList(contents []byte) engine.ParseResult {
 		})
 		result.Items = append(result.Items, "City: "+string(m[2]))
 		i++
-		if i > 3 {
+		if i > 5 {
 			return *result
 		}
 	}
