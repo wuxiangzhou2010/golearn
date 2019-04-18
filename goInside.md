@@ -41,6 +41,7 @@ chansend
 referenc:
 
 - [channel 数据结构](https://zhuanlan.zhihu.com/p/27295229)
+- [channel 最佳实践](https://zhuanlan.zhihu.com/p/32521576)
 
 ## select
 
