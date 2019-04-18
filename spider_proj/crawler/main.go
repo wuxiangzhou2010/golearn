@@ -11,7 +11,7 @@ import (
 
 func main() {
 	e := engine.ConcurrentEngine{
-		Scheduler:   scheduler.NewSimpleScheduler(),
+		Scheduler:   scheduler.NewQueuedScheduler(),
 		WorkerCount: 20,
 	}
 	e.Run(engine.Request{
@@ -22,6 +22,7 @@ func main() {
 }
 
 func init() {
+	// 方便通过web调试
 	go func() {
 		http.ListenAndServe("localhost:6060", nil)
 	}()
