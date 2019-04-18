@@ -2,7 +2,6 @@ package chromedp
 
 import (
 	"context"
-	"fmt"
 	"io"
 	"log"
 	"strings"
@@ -11,8 +10,8 @@ import (
 	"github.com/chromedp/chromedp"
 )
 
-type Agent struct {
-}
+//Agent is a chromedp agent
+type Agent struct{}
 
 func NewAgent() *Agent {
 	return &Agent{}
@@ -45,7 +44,7 @@ func (c *Agent) Get(url string) (io.Reader, error) {
 	)
 	t2 := time.Now()
 
-	fmt.Println("time used: ", t2.Sub(t1))
+	log.Println("time used: ", t2.Sub(t1), " to get ", url)
 	if err != nil {
 		return nil, err
 	}

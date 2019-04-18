@@ -15,7 +15,7 @@ func Run(seeds ...Request) {
 		requests = requests[1:]
 		log.Printf("Fetching %s\n", r.Url)
 
-		result, err := worker(&r)
+		result, err := worker(r)
 		if err != nil {
 			panic(err)
 		}
@@ -27,14 +27,14 @@ func Run(seeds ...Request) {
 	}
 }
 
-func worker(r *Request) (*ParseResult, error) {
+func worker(r Request) (ParseResult, error) {
 	re, err := r.Agent.Get(r.Url)
 	if err != nil {
-		return nil, err
+		return ParseResult{}, err
 	}
 	all, err := ioutil.ReadAll(re)
 	if err != nil {
-		return nil, err
+		return ParseResult{}, err
 	}
 	return r.ParserFunc(all), nil
 

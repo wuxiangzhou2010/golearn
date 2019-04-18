@@ -14,7 +14,7 @@ var tallRe = regexp.MustCompile(`<div class="m-btn purple" data-v-bff6f798="">([
 var salaryRe = regexp.MustCompile(`<div class="m-btn" data-v-bff6f798="">月薪:([^<]+)</div>`)
 var placeRe = regexp.MustCompile(`<div class="m-btn purple" data-v-bff6f798="">工作地:([^<]+)</div>`)
 
-func ParseProfile(contents []byte) *engine.ParseResult {
+func ParseProfile(contents []byte) engine.ParseResult {
 
 	profile := model.Profile{}
 
@@ -30,7 +30,7 @@ func ParseProfile(contents []byte) *engine.ParseResult {
 
 	result := engine.NewParseResult()
 	result.Items = []interface{}{profile}
-	return result
+	return *result
 }
 func extractString(contents []byte, re *regexp.Regexp) string {
 	match := re.FindSubmatch(contents)

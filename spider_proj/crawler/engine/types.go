@@ -4,15 +4,14 @@ import "github.com/wuxiangzhou2010/daily_learning/go/spider_proj/crawler/util/ag
 
 type Request struct {
 	Url        string
-	ParserFunc func([]byte) *ParseResult
-	Agent  agent.Agent
-	Name string
+	ParserFunc func([]byte) ParseResult
+	Agent      agent.Agent
+	Name       string
 }
 type ParseResult struct {
 	Requests []Request
 	Items    []interface{}
 }
-
 
 func NewParseResult() *ParseResult {
 	return &ParseResult{}
