@@ -1,4 +1,4 @@
-##爬虫项目介绍
+# 爬虫项目
 
 - 通用爬虫
 - 聚焦爬虫
@@ -19,3 +19,5 @@
 - 使用 css 选择器
 - 使用 xpath
 - 使用正则表达式
+
+- [随机伪造 User-Agent](https://blog.csdn.net/tyBaoErGe/article/details/50375802)
