@@ -7,10 +7,6 @@ type QueuedScheduler struct {
 	workerChan  chan chan engine.Request
 }
 
-func (s *QueuedScheduler) WorkerChan() chan engine.Request {
-	return make(chan engine.Request)
-}
-
 func NewQueuedScheduler() *QueuedScheduler {
 	return &QueuedScheduler{}
 }
@@ -20,12 +16,8 @@ func (s *QueuedScheduler) Submit(r engine.Request) {
 }
 func (s *QueuedScheduler) WorkerReady(w chan engine.Request) {
 	s.workerChan <- w
-
 }
 
-//func (s *QueuedScheduler) ConfigureWorkerChan(chan engine.Request) {
-//	panic("implement me")
-//}
 func (s *QueuedScheduler) Run() {
 	s.workerChan = make(chan chan engine.Request)
 	s.requestChan = make(chan engine.Request)
@@ -41,10 +33,8 @@ func (s *QueuedScheduler) Run() {
 			}
 			select {
 			case r := <-s.requestChan:
-				//send r to ? worker
 				requestQ = append(requestQ, r)
 			case w := <-s.workerChan:
-				//send ? next_request to w
 				workerQ = append(workerQ, w)
 			case activeWorker <- activeRequest: //同时有request 和 worker
 				workerQ = workerQ[1:]

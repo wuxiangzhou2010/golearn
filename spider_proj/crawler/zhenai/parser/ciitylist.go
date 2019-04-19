@@ -2,8 +2,7 @@ package parser
 
 import (
 	"github.com/wuxiangzhou2010/daily_learning/go/spider_proj/crawler/engine"
-	"github.com/wuxiangzhou2010/daily_learning/go/spider_proj/crawler/util/agent/chromedp"
-
+	"github.com/wuxiangzhou2010/daily_learning/go/spider_proj/crawler/util/agent/my"
 	"regexp"
 )
 
@@ -19,7 +18,7 @@ func ParseCityList(contents []byte) engine.ParseResult {
 		result.Requests = append(result.Requests, engine.Request{
 			Url:        string(m[1]),
 			ParserFunc: ParseCity,
-			Agent:      chromedp.NewAgent(),
+			Agent:      my.NewAgent(),
 			Name:       "City: " + string(m[2]),
 		})
 		result.Items = append(result.Items, "City: "+string(m[2]))

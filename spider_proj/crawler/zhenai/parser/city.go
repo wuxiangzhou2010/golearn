@@ -1,14 +1,12 @@
 package parser
 
 import (
-	"log"
-
+	"github.com/wuxiangzhou2010/daily_learning/go/spider_proj/crawler/engine"
 	"github.com/wuxiangzhou2010/daily_learning/go/spider_proj/crawler/util/agent/chromedp"
 	"github.com/wuxiangzhou2010/daily_learning/go/spider_proj/crawler/util/str"
 
+	"log"
 	"regexp"
-
-	"github.com/wuxiangzhou2010/daily_learning/go/spider_proj/crawler/engine"
 )
 
 var cityRe = regexp.MustCompile(`<a href="(http://album.zhenai.com/u/[0-9]+)" target="_blank">([^<]+)</a>`)
@@ -23,14 +21,12 @@ func ParseCity(contents []byte) engine.ParseResult {
 		result.Requests = append(result.Requests, engine.Request{ // what need to be process again
 			Url:        string(m[1]),
 			ParserFunc: ParseProfile,
-			Agent:      chromedp.NewAgent(),
+			Agent:      chromedp.NewAgent(), // data exist in dynamic area
 			Name:       string(m[2]),
 		})
 		result.Items = append(result.Items, string(m[2])) //name
-		//fmt.Printf("link: %s  nickname: %s\n", m[1], m[2])
 
 	}
 
-	//return engine.NewParseResult() // nil
 	return *result
 }
