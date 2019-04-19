@@ -2,7 +2,7 @@ package fetcher
 
 import (
 	"bufio"
-	"github.com/wuxiangzhou2010/daily_learning/go/spider_proj/crawler/util/agent/my"
+	"github.com/wuxiangzhou2010/luandun/go/spider_proj/crawler/util/agent/my"
 	"golang.org/x/net/html/charset"
 	"golang.org/x/text/encoding"
 	"golang.org/x/text/encoding/unicode"

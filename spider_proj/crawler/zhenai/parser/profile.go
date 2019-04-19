@@ -1,8 +1,8 @@
 package parser
 
 import (
-	"github.com/wuxiangzhou2010/daily_learning/go/spider_proj/crawler/engine"
-	"github.com/wuxiangzhou2010/daily_learning/go/spider_proj/crawler/model"
+	"github.com/wuxiangzhou2010/luandun/go/spider_proj/crawler/engine"
+	"github.com/wuxiangzhou2010/luandun/go/spider_proj/crawler/model"
 	"regexp"
 	"strconv"
 )

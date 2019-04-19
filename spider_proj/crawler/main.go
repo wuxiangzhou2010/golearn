@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/wuxiangzhou2010/daily_learning/go/spider_proj/crawler/engine"
-	"github.com/wuxiangzhou2010/daily_learning/go/spider_proj/crawler/scheduler"
-	"github.com/wuxiangzhou2010/daily_learning/go/spider_proj/crawler/util/agent/my"
-	"github.com/wuxiangzhou2010/daily_learning/go/spider_proj/crawler/zhenai/parser"
+	"github.com/wuxiangzhou2010/luandun/go/spider_proj/crawler/engine"
+	"github.com/wuxiangzhou2010/luandun/go/spider_proj/crawler/scheduler"
+	"github.com/wuxiangzhou2010/luandun/go/spider_proj/crawler/util/agent/my"
+	"github.com/wuxiangzhou2010/luandun/go/spider_proj/crawler/zhenai/parser"
 	"net/http"
 	_ "net/http/pprof"
 )
