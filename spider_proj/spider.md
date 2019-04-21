@@ -21,3 +21,15 @@
 - 使用正则表达式
 
 - [随机伪造 User-Agent](https://blog.csdn.net/tyBaoErGe/article/details/50375802)
+
+## Elastic search 
+```sh
+docker pull elasticsearch:5.6.16
+docker run -d -p 9200:9200  elasticsearch:5.6.16
+```
+``` sh
+go get gopkg.in/olivere/elastic.v5
+```
+```go
+import elastic "gopkg.in/olivere/elastic.v5"
+```
