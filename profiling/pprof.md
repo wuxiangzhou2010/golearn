@@ -1,5 +1,7 @@
 # pprof
 
+## what is pprof
+
 - How it works
 
   CPU profiling：
@@ -130,13 +132,29 @@ reference:
 - [Go:strings.Replace 与 bytes.Replace 调优](https://zhuanlan.zhihu.com/p/56217644)
 - [Profiling your Golang app in 3 steps](https://coder.today/tech/2018-11-10_profiling-your-golang-app-in-3-steps/)
 
+## example
+
 - [GopherCon 2018: George Tankersley - Micro optimizing Go Code](https://www.youtube.com/watch?time_continue=102&v=keydVd-Zn80)
 
-write benchmark
+1. write benchmark
 
-1. inline
-1. eliminate bound check --> use fixed array
-1. allocations and copies
-   1. runtime.malloc
-   2. runtime.makeslice
-   3. runtime.memmove
+   ```sh
+   go test -bench.
+   ```
+
+2. pprof
+
+   ```sh
+   top5
+   web .
+   weblist .
+   ```
+
+3. how to boost performance
+
+   - inlining, can avoiding function call overhead // function complexity is counted
+   - eliminate bound check --> use fixed array
+   - allocations and copies
+     - runtime.malloc
+     - runtime.makeslice
+     - runtime.memmove
