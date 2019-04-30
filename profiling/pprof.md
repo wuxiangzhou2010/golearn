@@ -129,3 +129,14 @@ reference:
 - [brendangregg](http://www.brendangregg.com/flamegraphs.html)
 - [Go:strings.Replace 与 bytes.Replace 调优](https://zhuanlan.zhihu.com/p/56217644)
 - [Profiling your Golang app in 3 steps](https://coder.today/tech/2018-11-10_profiling-your-golang-app-in-3-steps/)
+
+- [GopherCon 2018: George Tankersley - Micro optimizing Go Code](https://www.youtube.com/watch?time_continue=102&v=keydVd-Zn80)
+
+write benchmark
+
+1. inline
+1. eliminate bound check --> use fixed array
+1. allocations and copies
+   1. runtime.malloc
+   2. runtime.makeslice
+   3. runtime.memmove
