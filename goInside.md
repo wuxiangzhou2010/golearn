@@ -74,3 +74,7 @@ func convTI(tab *itab, elem unsafe.Pointer) (i iface) {
 reference:
 
 - [Go Interface 源码剖析](https://zhuanlan.zhihu.com/p/27652856)
+
+- [《深入解析Go》](https://tiancaiamao.gitbooks.io/go-internals/content/zh/01.0.html)
+- [Golang Internals Resources](https://github.com/emluque/golang-internals-resources)
+- [How to learn internals of of the Go Programming Lanauge? For noob](https://stackoverflow.com/questions/49771806/how-to-learn-internals-of-of-the-go-programming-lanauge-for-noob)
