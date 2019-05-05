@@ -1,5 +1,7 @@
-channel
-bufferred channel
+# channel
+
+- unbuffered channel
+- bufferred channel
 
 使用 channel 来等待 goroutine 结束
 
