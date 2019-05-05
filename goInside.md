@@ -75,6 +75,10 @@ reference:
 
 - [Go Interface 源码剖析](https://zhuanlan.zhihu.com/p/27652856)
 
-- [《深入解析Go》](https://tiancaiamao.gitbooks.io/go-internals/content/zh/01.0.html)
+- [《深入解析 Go》](https://tiancaiamao.gitbooks.io/go-internals/content/zh/01.0.html)
 - [Golang Internals Resources](https://github.com/emluque/golang-internals-resources)
 - [How to learn internals of of the Go Programming Lanauge? For noob](https://stackoverflow.com/questions/49771806/how-to-learn-internals-of-of-the-go-programming-lanauge-for-noob)
+
+## 调度器
+
+- [Go 调度器: M, P 和 G](https://colobu.com/2017/05/04/go-scheduler/)
