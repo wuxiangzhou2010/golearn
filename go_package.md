@@ -29,11 +29,11 @@ init 同一个 go 文件的 init 从上到下依次执行
 
 ### import
 
-\_ 仅仅执行包中的 init()函数
+`_` 仅仅执行包中的 init()函数
 
 别名 import(f "fmt")
 
-import 的时候其实是执行了该包里面的 init 函数，初始化了里面的变量，\_操作只是说该包引入了，只初始化里面的 init 函数和一些变量，不能通过包名来调用其它的函数，这有什么用呢？往往这些 init 函数里面是注册自己包里面的引擎，让外部可以方便的使用，就很多实现 database/sql 的引起，在 init 函数里面都是调用了 sql.Register(name string, driver driver.Driver)注册自己，然后外部就可以使用了。
+import 的时候其实是执行了该包里面的 init 函数，初始化了里面的变量，`_`操作只是说该包引入了，只初始化里面的 init 函数和一些变量，不能通过包名来调用其它的函数，这有什么用呢？往往这些 init 函数里面是注册自己包里面的引擎，让外部可以方便的使用，就很多实现 database/sql 的引起，在 init 函数里面都是调用了 sql.Register(name string, driver driver.Driver)注册自己，然后外部就可以使用了。
 
 ### [interface{} 空接口可以代表任何类型， 有点类似于 Java 中的 Object 类](http://blog.csdn.net/chuangrain/article/details/9358737)
 
