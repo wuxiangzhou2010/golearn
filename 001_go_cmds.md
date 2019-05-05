@@ -1,8 +1,8 @@
 # go commands
 
-go command: `https://www.imooc.com/video/7208`
+<!-- go command: `https://www.imooc.com/video/7208` -->
 
-``` sh
+```sh
 go env GOPATH
 go env GOROOT
 
