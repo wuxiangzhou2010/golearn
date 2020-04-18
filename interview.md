@@ -23,4 +23,6 @@ The scheduler will run after GC, "go" statements, blocking channel operations, b
 - [golang-interviews](https://wuyin.io/2018/03/16/golang-interviews/)
 - [Go 面试题答案与解析](https://yushuangqi.com/blog/2017/golang-mian-shi-ti-da-an-yujie-xi.html)
 - [笔试面试知识整理](https://hit-alibaba.github.io/interview/)
-- [golang面试题解析](https://blog.51cto.com/qiangmzsx/1949904)
+- [golang 面试题解析](https://blog.51cto.com/qiangmzsx/1949904)
+
+- [go 的一些坑](https://jiajunhuang.com/articles/2018_01_31-golang_traps.md.html)
