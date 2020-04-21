@@ -116,3 +116,12 @@ Package contex defines the Contex type, which carries deadlines, cancelation sig
 - bufio
 
 - log
+
+- container
+
+  - heap
+
+  - list
+    - Package list implements a doubly linked list.
+  - ring
+    - Package ring implements operations on circular lists
