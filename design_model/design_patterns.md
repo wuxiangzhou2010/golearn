@@ -45,3 +45,5 @@ reference:
   ](https://juejin.im/post/5a113e686fb9a0452936596c)
 
 - [超赞的 GO 语言设计模式和成例集锦](https://studygolang.com/articles/8230)
+
+- [Go 的设计模式的几个原则](http://wjp2013.github.io/go/go-patterns/)
