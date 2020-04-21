@@ -104,3 +104,82 @@ reference:
   Goroutines are lightweight version of threads, with very low cost of starting up. Each goroutine is described by a struct called `G`, which contains fields necessary to keep track of its stack and current status. So, `G = goroutine`.
 
   Runtime keeps track of each `G` and maps them onto `Logical Processors`, named `P`. `P` can be seen as a abstract resource or a context, which needs to be acquired, so that `OS thread (called M, or Machine)` can execute `G` .
+
+- [go 内部实现](https://docs.kilvn.com/go-internals/02.2.html)
+
+## Slice
+
+- 三部分组成
+- slice 的扩容
+- make 和 new
+  - make 返回普通类型
+  - new 返回指针
+
+## map
+
+- 底层用 hash 表实现的
+
+```go
+struct Hmap
+{
+    uint8   B;    // 可以容纳2^B个项
+    uint16  bucketsize;   // 每个桶的大小
+
+    byte    *buckets;     // 2^B个Buckets的数组
+    byte    *oldbuckets;  // 前一个buckets，只有当正在扩容时才不为空
+};
+```
+
+## nil
+
+- interface
+  var i interface{}
+
+只有上述的 interface 才为空。
+
+- slice string
+
+  - string 不能喝 nil 比较， 即使是空的 string，它的大小也是两个机器字长的
+  - slice slice 也类似，它的空值并不是一个空指针，而是结构体中的指针域为空，空的 slice 的大小也是三个机器字长的。
+
+- channel map
+
+  - channel 跟 string 或 slice 有些不同，它在栈上只是一个指针，实际的数据都是由指针所指向的堆上面。
+
+    - 读或者写一个 nil 的 channel 的操作会永远阻塞。
+    - 读一个关闭的 channel 会立刻返回一个 channel 元素类型的零值。
+    - 写一个关闭的 channel 会导致 panic。
+
+  - map map 也是指针，实际数据在堆中，未初始化的值是 nil。
+
+## 函数调用协议
+
+- 多值返回
+  - 在传入的参数之上留了两个空位，被调者直接将返回值放在这两空位
+- go 关键字
+  - 如何实现 runtime.newproc 函数接受的参数分别是：参数大小，新的 goroutine 是要运行的函数，函数的 n 个参数。
+  - 在 runtime.newproc 中，会新建一个栈空间，将栈参数的 12 个字节拷贝到新栈空间中并让栈指针指向参数。这时的线程状态有点像当被调度器剥夺 CPU 后一样，寄存器 PC、SP 会被保存到类似于进程控制块的一个结构体 struct G 内。f 被存放在了 struct G 的 entry 域，后面进行调度器恢复 goroutine 的运行，新线程将从 f 开始执行。
+- defer 关键字
+  - defer 是在 return 之前执行的。这个在 官方文档中是明确说明了的
+  - 函数返回的过程是这样的：先给返回值赋值，然后调用 defer 表达式，最后才是返回到调用函数中。
+  - 如何实现： runtime.deferproc
+- 连续栈
+  - goroutine 可以初始时只给栈分配很小的空间，然后随着使用过程中的需要自动地增长。
+  - 如何捕获到函数的栈空间不足 runtime.morestack
+  - 旧栈数据复制到新栈 runtime.newstack， runtime.lessstack
+- 闭包的实现
+  - Go 语言支持闭包
+  - Go 语言能通过 escape analyze 识别出变量的作用域，自动将变量在堆上分配。将闭包环境变量在堆上分配是 Go 实现闭包的基础。
+  - 返回闭包时并不是单纯返回一个函数，而是返回了一个结构体，记录下函数返回地址和引用的环境中的变量地址。
+
+## goroutine 调度器
+
+- G， P， M
+
+## 垃圾回收
+
+- Go 语言使用标记清扫的垃圾回收算法
+
+reference：
+
+- [深入解析 Go](https://docs.kilvn.com/go-internals/07.2.html)
