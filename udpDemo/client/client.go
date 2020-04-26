@@ -32,7 +32,16 @@ func main() {
 		_, err := Conn.Write(buf)
 		if err != nil {
 			fmt.Println(msg, err)
+			break
 		}
+		bufRead := make([]byte, 1)
+
+		n, _, err := Conn.ReadFromUDP(bufRead)
+		if err != nil {
+			fmt.Println("udp read error:", err)
+			break
+		}
+		fmt.Printf("Read: %d, %s\n", n, bufRead)
 		time.Sleep(time.Second * 1)
 	}
 }

@@ -33,5 +33,10 @@ func main() {
 		if err != nil {
 			fmt.Println("Error: ", err)
 		}
+		n, err = ServerConn.WriteToUDP([]byte("How are you?"), addr)
+		if err != nil {
+			fmt.Println("write to udp error:", addr.IP.String())
+		}
+		fmt.Printf("write to: %s, %d \n", addr.IP.String(), n)
 	}
 }
