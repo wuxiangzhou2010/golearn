@@ -22,7 +22,7 @@
 
    Answer: 10, 9, 10
 
-2) 请问下面代码输出
+   2. 请问下面代码输出
 
    ```go
    package main
@@ -42,34 +42,34 @@
 
    Answer: 3 1
 
-3. 请问下面代码的输出
+2. 请问下面代码的输出
 
-```go
-package main
+   ```go
+   package main
 
-import "fmt"
+   import "fmt"
 
-func main() {
+   func main() {
 
-	fmt.Println((1+6)/2*4 ^ 2 + 10%3<<3)
-}
+       fmt.Println((1+6)/2*4 ^ 2 + 10%3<<3)
+   }
 
-```
+   ```
 
-Answer: 22
+   Answer: 22
 
-4. 请问哪个声明不正确
+3. 请问哪个声明不正确
 
-```go
-A: func test(a,b int)(int, error)
-B: func test(a int, b int)(int, error)
-C: func test(a,b int)(val int, error)
-D: func test(a int, b int)(val int, err error)
-```
+   ```go
+   A: func test(a,b int)(int, error)
+   B: func test(a int, b int)(int, error)
+   C: func test(a,b int)(val int, error)
+   D: func test(a int, b int)(val int, err error)
+   ```
 
-Answer: C ---> syntax error: mixed named and unnamed function parameters
+   Answer: C ---> syntax error: mixed named and unnamed function parameters
 
-5. 下面代码输出是怎样的：
+4. 下面代码输出是怎样的：
 
    ```go
    package main
@@ -111,7 +111,7 @@ Answer: C ---> syntax error: mixed named and unnamed function parameters
    Wang &{Wang 24}
    ```
 
-6. 下面代码输出是：
+5. 下面代码输出是：
 
    ```go
    package main
@@ -140,7 +140,7 @@ Answer: C ---> syntax error: mixed named and unnamed function parameters
    4, 4
    ```
 
-7) 关于 init 函数， 下面说法正确的是：
+6. 关于 init 函数， 下面说法正确的是：
 
    ```txt
    A. 一个包中， 可以包含多个init函数
@@ -151,7 +151,7 @@ Answer: C ---> syntax error: mixed named and unnamed function parameters
 
    Answer： A B
 
-8) 下面函数的执行结果是
+7. 下面函数的执行结果是
 
    ```go
    package main
@@ -181,7 +181,7 @@ Answer: C ---> syntax error: mixed named and unnamed function parameters
    goroutine 1 [running]:
    ```
 
-9) 下面函数的执行结果是
+8. 下面函数的执行结果是
 
    ```go
    package main
@@ -206,21 +206,20 @@ Answer: C ---> syntax error: mixed named and unnamed function parameters
    ```sh
    2
    1
+```
+   
+9. 关于循环语句， 下面说法正确的是：
 
+   ```txt
+   A. 循环语句既支持for关键字， 也支持while 和 do-while
+   B. 关键字for的基本用法和C/C++中没有什么差异
+   B. for 关键字支持continue/break来控制循环，但是它提供了一个更高级的label,可以选择中断哪一个循环
+   D. for循环不支持以逗号为间隔的多个赋值语句
    ```
 
-10) 关于循环语句， 下面说法正确的是：
+   Answer: BD
 
-    ```txt
-    A. 循环语句既支持for关键字， 也支持while 和 do-while
-    B. 关键字for的基本用法和C/C++中没有什么差异
-    B. for 关键字支持continue/break来控制循环，但是它提供了一个更高级的label,可以选择中断哪一个循环
-    D. for循环不支持以逗号为间隔的多个赋值语句
-    ```
-
-    Answer: BD
-
-11) 下面对函数 add 的调用正确的是：
+10. 下面对函数 add 的调用正确的是：
 
     ```go
     func add(args ...int) int {
@@ -231,6 +230,7 @@ Answer: C ---> syntax error: mixed named and unnamed function parameters
     	}
     	return sum
     }
+    ```
 
 
     A. add(1,2)
@@ -238,10 +238,10 @@ Answer: C ---> syntax error: mixed named and unnamed function parameters
     C. add([]int{1,2,3})
     D. add([]int{1,2,3}...)
     ```
-
+    
     Answer: ABD
 
-12) 关于 switch 语句 下面说法正确的是：
+12. 关于 switch 语句 下面说法正确的是：
 
     ```txt
     A. 条件表达式必须为常量或者整数
@@ -252,7 +252,7 @@ Answer: C ---> syntax error: mixed named and unnamed function parameters
 
     Answer: BD
 
-13) Go 中的引用类型包括：
+13. Go 中的引用类型包括：
 
     ```txt
     A. slice
@@ -263,7 +263,7 @@ Answer: C ---> syntax error: mixed named and unnamed function parameters
 
     Answer: ABC
 
-14) 下列赋值正确的是：
+14. 下列赋值正确的是：
 
     ```go
     A.  var x = nil
@@ -274,7 +274,7 @@ Answer: C ---> syntax error: mixed named and unnamed function parameters
 
     Answer: BD
 
-15) 下列 slice 初始化方式正确的是：
+15. 下列 slice 初始化方式正确的是：
 
     ```go
     A. make([]int)
@@ -285,7 +285,7 @@ Answer: C ---> syntax error: mixed named and unnamed function parameters
 
     Answer: D
 
-16) 下列不能正确定义数组的赋值语句有：
+16. 下列不能正确定义数组的赋值语句有：
 
     ```go
     A. var a = [5]int{1,2,3,4,5}
@@ -296,52 +296,90 @@ Answer: C ---> syntax error: mixed named and unnamed function parameters
 
     Answer: C
 
+17. 对局部变量整形切片 x 赋值， 下面写法正确的是
 
-    17. 对局部变量整形切片x赋值， 下面写法正确的是
+    ```go
+    A. x:= []int{
+      					1,2,3,
+                4,5,6,
+    					}
+    B. x:= []int{
+      			1,2,3,
+      			4,5,6  //必须有逗号
+    				}
+    C. x := []int{
+      			1,2,3,
+    				4,5,6}
+    D. x := []int{1,2,3,4,5,6}
+    ```
 
-        ```go
-        A. x:= []int{
-          					1,2,3,
-                    4,5,6,
-        					}
-        B. x:= []int{
-          			1,2,3,
-          			4,5,6  //必须有逗号
-        				}
-        C. x := []int{
-          			1,2,3,
-        				4,5,6}
-        D. x := []int{1,2,3,4,5,6}
-        ```
+    Answer: ACD
 
-        Answer: ACD
+18. 下面程序的输出是
 
-    18. 下面程序的输出是
+    ```go
+    package main
 
-        ```go
-        package main
+    import "fmt"
 
-        import "fmt"
+    type Slice []int
 
-        type Slice []int
+    func NewSlice() Slice {
+    	return make(Slice, 0)
+    }
 
-        func NewSlice() Slice {
-        	return make(Slice, 0)
-        }
+    func (s Slice) Add(elem int) *Slice {
 
-        func (s Slice) Add(elem int) *Slice {
+    	s = append(s, elem)
+    	fmt.Println(elem)
+    	return &s
+    }
 
-        	s = append(s, elem)
-        	fmt.Println(elem)
-        	return &s
-        }
+    func main() {
+    	s := NewSlice()
+    	defer s.Add(1).Add(2).Add(3)
+    	s.Add(4)
 
-        func main() {
-        	s := NewSlice()
-        	defer s.Add(1).Add(2).Add(3)
-        	s.Add(4)
+    }
+    ```
 
-        }
-        ```
+    Answer: 1243
 
-        Answer: 1243
+19. 下面代码会输出什么？
+
+    ```go
+    package main
+
+    import "fmt"
+
+    type people struct{}
+
+    func (p *people) showA() {
+    	fmt.Println("showA ")
+    	p.showB()
+    }
+    func (p *people) showB() {
+    	fmt.Println("showB")
+    }
+
+    type teacher struct {
+    	people
+    }
+
+    func (t *teacher) showB() {
+    	fmt.Println("Teacher showB")
+    }
+    func main() {
+    	t := teacher{}
+    	t.showA()
+    	t.showB()
+    }
+    ```
+
+    Answer:
+
+    ```sh
+    showA
+    showB
+    Teacher showB
+    ```
