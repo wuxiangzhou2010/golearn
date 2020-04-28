@@ -206,8 +206,8 @@
    ```sh
    2
    1
-```
-   
+   ```
+
 9. 关于循环语句， 下面说法正确的是：
 
    ```txt
@@ -238,7 +238,7 @@
     C. add([]int{1,2,3})
     D. add([]int{1,2,3}...)
     ```
-    
+
     Answer: ABD
 
 12. 关于 switch 语句 下面说法正确的是：
@@ -382,4 +382,108 @@
     showA
     showB
     Teacher showB
+    ```
+
+20. 下面程序的输出是：
+
+    ```go
+
+    package main
+
+    import (
+        "fmt"
+    )
+
+    func main() {
+        fmt.Println("return:", defer_call())
+    }
+
+    func defer_call() int {
+        var i int
+        defer func() {
+            i++
+            fmt.Println("defer1:", i)
+        }()
+        defer func() {
+            i++
+            fmt.Println("defer2:", i)
+        }()
+        return i
+    }
+
+    ```
+
+    Answer:
+
+    ```txt
+
+    defer2: 1
+    defer1: 2
+    return: 0
+    ```
+
+21. 下面程序的输出是：
+
+    ```go
+    package main
+
+    import (
+        "fmt"
+    )
+
+    func main() {
+        fmt.Println("return:", defer_call())
+    }
+
+    func defer_call() (i int) {
+        defer func() {
+            i++
+            fmt.Println("defer1:", i)
+        }()
+        defer func() {
+            i++
+            fmt.Println("defer2:", i)
+        }()
+        return i
+    }
+    ```
+
+    Answer:
+
+    ```txt
+
+    defer2: 1
+    defer1: 2
+    return: 2
+    ```
+
+22. 下面程序有什么错误：
+
+    ```go
+    package main
+
+    func main() {
+        var value1 = nil // error
+        _ = value1
+        var value2 string = nil // error
+        if value2 == nil { // error
+            value2 = "test"
+        }
+    }
+    ```
+
+    Answer: 如下才是正确的， 没有明确类型的 nil 是错误的。
+
+    ```txt
+    package main
+
+    func main() {
+    	var value1 interface{} = nil // error
+    	_ = value1
+    	var value2 string
+    	if value2 == "" {
+    		value2 = "test"
+    	}
+    }
+
     ```
