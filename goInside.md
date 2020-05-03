@@ -33,7 +33,14 @@ reference:
 
 ## [channel](https://tiancaiamao.gitbooks.io/go-internals/content/zh/07.1.html)
 
-环形队列， 游标
+- [数据结构](https://www.youtube.com/watch?v=KBZlN0izeiY)
+- buf, 环形队列
+- 游标
+  - sendx
+  - Recvx
+- waiting senders sudog![image-20200502182916711](/Users/takesachishuu/go/src/github.com/wuxiangzhou2010/golearn/image-20200502182916711.png)
+- waiting receivers
+- Mutex
 
 hchan 是 chan 的结构体，在 hchan 结构中 qcount 和 elemsize 指定队列的容量和使用量，dataqsiz 队列的大小，整个 hchan 结构体只记录了队列大小相关的值，带有缓冲区的 chan 需要 make 的时候指定
 
@@ -44,6 +51,12 @@ reference:
 
 - [channel 数据结构](https://zhuanlan.zhihu.com/p/27295229)
 - [channel 最佳实践](https://zhuanlan.zhihu.com/p/32521576)
+
+- notice
+  - channel 的结构在堆区， make chan 返回指针
+  - 没有共享的内存，除了 hchan 结构
+  - 阻塞的时候调用 gopark, 换设置为 waiting, 置换新的 G
+  - 恢复的时候使用 goready
 
 ## select
 
@@ -95,17 +108,32 @@ reference:
 - [Golang Internals Resources](https://github.com/emluque/golang-internals-resources)
 - [How to learn internals of the Go Programming Lanauge? For noob](https://stackoverflow.com/questions/49771806/how-to-learn-internals-of-of-the-go-programming-lanauge-for-noob)
 
-## 调度器
+## [调度器](https://www.youtube.com/watch?v=YHRO5WQGh0k)
+
+- 调度器设计理念
+  - resuse thread， 创建的 kernel thread 数量和系统 CPU 数量相同， 最大利用多核
+  - 每个 CPU 有自己的 runqueue, 以减少对一个全局 queue 访问造成的性能瓶颈。 Lock.
+  - 负载均衡： 使用到 work steal(when thread is busy)/ handoff (when thread is block)/ start a thread
+  - 抢占长时间不交出控制权的 goroutine preemption ---> sysmon ---> global runqueue=== lower prority than local runqueue
+- 调度器的缺点
+
+  - 非强抢占 - strong preemmtion
+  - runqueue 的调度室 FIFO 的方式， 并不是 Linux 类似的优先队列
+  - 不是 LIFO， 缓存可能不能很好地利用。
 
 - [Go 调度器: M, P 和 G](https://colobu.com/2017/05/04/go-scheduler/)
 
 - G
 
-  Goroutines are lightweight version of threads, with very low cost of starting up. Each goroutine is described by a struct called `G`, which contains fields necessary to keep track of its stack and current status. So, `G = goroutine`.
+  Goroutines are lightweight version of threads, with very low cost of starting up. Each goroutine is d`escribed by a struct called`G`, which contains fields necessary to keep track of its stack and current status. So,`G = goroutine`.
 
   Runtime keeps track of each `G` and maps them onto `Logical Processors`, named `P`. `P` can be seen as a abstract resource or a context, which needs to be acquired, so that `OS thread (called M, or Machine)` can execute `G` .
 
 - [go 内部实现](https://docs.kilvn.com/go-internals/02.2.html)
+
+- [GPM 模型](https://juejin.im/post/5e3a16e06fb9a07ccb7e8472)
+
+![img](https://user-gold-cdn.xitu.io/2020/2/5/17012e959e4664fb?imageslim)
 
 ## Slice
 
@@ -150,7 +178,9 @@ struct Hmap
     - 读一个关闭的 channel 会立刻返回一个 channel 元素类型的零值。
     - 写一个关闭的 channel 会导致 panic。
 
-  - map map 也是指针，实际数据在堆中，未初始化的值是 nil。
+- map map 也是指针，实际数据在堆中，未初始化的值是 nil。
+- nil is useful
+  - [use nil channel to disable select cases](https://youtu.be/ynoY2xz-F8s?t=1547)
 
 ## 函数调用协议
 
@@ -172,13 +202,42 @@ struct Hmap
   - Go 语言能通过 escape analyze 识别出变量的作用域，自动将变量在堆上分配。将闭包环境变量在堆上分配是 Go 实现闭包的基础。
   - 返回闭包时并不是单纯返回一个函数，而是返回了一个结构体，记录下函数返回地址和引用的环境中的变量地址。
 
-## goroutine 调度器
-
-- G， P， M
-
-## 垃圾回收
+## [垃圾回收](https://www.youtube.com/watch?v=aiv1JOfMjm0)
 
 - Go 语言使用标记清扫的垃圾回收算法
+- Three phases
+  - Mark setup  STW
+    - turn on the write barrier, so have to stop the world
+  - Marking  concurrent
+    - inspect the stacks and find root pointers to the heap
+    - Traverse the heap graph from those root pointers
+    - make values on the heap that are still in use
+  - Marking termination STW -- aka stop the world
+
+![image-20200503101907028](/Users/takesachishuu/go/src/github.com/wuxiangzhou2010/golearn/image-20200503101907028.png)
+
+## 内存逃逸到 heap 上
+
+查看方法
+
+```sh
+go build -gcflags "-m -l "
+```
+
+- 逃逸可能出现的情况
+  - when a value could possibly be referenced after the function that constructed the value returns
+  - when the compiler determines a value is too large to fit on the stack
+  - when the compiler doesn't know the size of a value at conpile time
+
+
+
+![image-20200503093934221](/Users/takesachishuu/go/src/github.com/wuxiangzhou2010/golearn/image-20200503093934221.png)
+
+![image-20200503093834988](/Users/takesachishuu/go/src/github.com/wuxiangzhou2010/golearn/image-20200503093834988.png)
+
+![image-20200503094020979](/Users/takesachishuu/go/src/github.com/wuxiangzhou2010/golearn/image-20200503094020979.png)
+
+
 
 reference：
 
